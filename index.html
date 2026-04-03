@@ -25,14 +25,12 @@
   .section-title { font-weight: 700; }
   .hero-desc, .project-desc, .value-desc, .bullets li { font-weight: 400; word-break: keep-all; }
 
-  /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(15,15,19,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
   .nav-name { font-size: 15px; font-weight: 600; color: var(--accent2); letter-spacing: -0.3px; }
   .nav-links { display: flex; gap: 24px; }
   .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .2s; }
   .nav-links a:hover { color: var(--text); }
 
-  /* HERO */
   .hero { min-height: 100vh; display: flex; align-items: center; padding: 80px 2rem 4rem; max-width: 900px; margin: 0 auto; }
   .hero-inner { width: 100%; }
   .hero-tag { display: inline-block; font-size: 12px; font-weight: 500; color: var(--accent2); background: rgba(124,110,245,0.12); border: 1px solid rgba(124,110,245,0.25); border-radius: 20px; padding: 4px 12px; margin-bottom: 1.5rem; letter-spacing: 0.5px; }
@@ -48,12 +46,10 @@
   .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
   .btn-secondary:hover { border-color: var(--accent); color: var(--accent2); }
 
-  /* SECTION */
   section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
   .section-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem; }
   .section-title { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 3rem; }
 
-  /* CORE VALUES */
   .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
   .value-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: border-color .2s; }
   .value-card:hover { border-color: rgba(124,110,245,0.4); }
@@ -61,7 +57,6 @@
   .value-title { font-size: 14px; font-weight: 600; margin-bottom: 0.5rem; color: var(--accent2); }
   .value-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
-  /* PROJECTS */
   .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; transition: border-color .2s, transform .2s; }
   .project-card:hover { border-color: rgba(124,110,245,0.3); transform: translateY(-2px); }
   .project-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 0.75rem; }
@@ -74,37 +69,35 @@
   .stack { font-size: 11px; color: var(--muted); background: var(--bg3); border-radius: 4px; padding: 2px 8px; }
   .project-desc { font-size: 13px; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.7; }
 
-  /* SCREENSHOT */
-  .screenshot-box { background: var(--bg3); border: 1px dashed rgba(255,255,255,0.12); border-radius: 10px; height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; margin-bottom: 1.25rem; cursor: pointer; transition: border-color .2s; position: relative; overflow: hidden; }
-  .screenshot-box:hover { border-color: var(--accent); }
-  .screenshot-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
-  .screenshot-placeholder { text-align: center; }
-  .screenshot-placeholder .icon { font-size: 2rem; margin-bottom: 6px; opacity: 0.4; }
-  .screenshot-placeholder p { font-size: 12px; color: var(--muted); }
-  .upload-hint { font-size: 11px; color: rgba(124,110,245,0.7); margin-top: 4px; }
+  .screenshot-box { border-radius: 10px; overflow: hidden; margin-bottom: 1.25rem; background: var(--bg3); }
+  .screenshot-box img { width: 100%; height: auto; display: block; border-radius: 10px; }
 
-  /* BULLETS */
   .bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .bullets li { font-size: 13px; color: var(--muted); padding-left: 1.2rem; position: relative; line-height: 1.7; }
   .bullets li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 3px; }
   .bullets li strong { color: var(--text); font-weight: 500; }
-
   .result-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: #1D9E75; background: rgba(29,158,117,0.1); border: 1px solid rgba(29,158,117,0.2); border-radius: 6px; padding: 4px 10px; margin-top: 1rem; margin-right: 6px; }
 
-  /* SKILLS */
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
   .skill-group { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
   .skill-group-title { font-size: 11px; font-weight: 600; letter-spacing: 1px; color: var(--accent); text-transform: uppercase; margin-bottom: 0.75rem; }
   .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .skill-tag { font-size: 12px; color: var(--text); background: var(--bg3); border-radius: 6px; padding: 4px 10px; }
 
-  /* FOOTER */
+  .timeline { display: flex; flex-direction: column; }
+  .tl-item { display: flex; gap: 1.25rem; padding-bottom: 2rem; position: relative; }
+  .tl-item:not(:last-child)::before { content: ''; position: absolute; left: 7px; top: 16px; bottom: 0; width: 1px; background: var(--border); }
+  .tl-dot { width: 15px; height: 15px; border-radius: 50%; background: var(--bg3); border: 2px solid var(--muted); flex-shrink: 0; margin-top: 4px; }
+  .tl-dot.current { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 8px rgba(124,110,245,0.5); }
+  .tl-dot.edu { background: var(--bg3); border-color: rgba(124,110,245,0.4); }
+  .tl-content { flex: 1; }
+  .tl-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+  .tl-company { font-size: 15px; font-weight: 600; }
+  .tl-period { font-size: 12px; color: var(--muted); }
+  .tl-role { font-size: 13px; color: var(--muted); }
+
   footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 13px; color: var(--muted); }
-
-  /* DIVIDER */
   .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
-
-  /* SCROLL FADE */
   .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s; }
   .fade-in.visible { opacity: 1; transform: none; }
 </style>
@@ -116,6 +109,7 @@
   <div class="nav-links">
     <a href="#about">소개</a>
     <a href="#projects">프로젝트</a>
+    <a href="#career">경력</a>
     <a href="#skills">기술</a>
   </div>
 </nav>
@@ -124,7 +118,7 @@
   <div class="hero-inner fade-in">
     <span class="hero-tag">Frontend Developer</span>
     <h1>구조를 먼저<br>생각하는<br><span>프론트엔드 개발자</span></h1>
-    <p class="hero-desc">기능이 동작하는 것에서 그치지 않고, 확장되고 유지보수될 수 있는 구조를 설계합니다. 풀스택 경험을 바탕으로 API 설계부터 인프라까지 제품 전체를 이해하며 개발합니다.</p>
+    <p class="hero-desc">5년차 웹 프론트엔드 개발자 김연주입니다. 사용자가 불편함을 느끼기 전에 먼저 생각하고, 작은 디테일 하나하나에 이유를 담는 개발을 추구합니다.</p>
     <div class="hero-chips">
       <span class="chip">JavaScript</span>
       <span class="chip">TypeScript</span>
@@ -134,7 +128,7 @@
     </div>
     <div class="hero-btns">
       <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
-      <a href="mailto:" class="btn btn-secondary">연락하기</a>
+      <a href="mailto:duswn1208@naver.com" class="btn btn-secondary">연락하기</a>
     </div>
   </div>
 </div>
@@ -169,7 +163,6 @@
   <p class="section-label">Work Experience</p>
   <h2 class="section-title">프로젝트</h2>
 
-  <!-- Project 1 -->
   <div class="project-card fade-in">
     <div class="project-header">
       <span class="project-title">RCS 통합 메시지 편집기 플랫폼</span>
@@ -178,12 +171,9 @@
     <div class="project-stacks">
       <span class="stack">JavaScript</span><span class="stack">HTML/CSS</span>
     </div>
-    <div class="screenshot-box" onclick="document.getElementById('file1').click()">
-      <div class="screenshot-placeholder">
-        <img src="rcs_send_page.png" alt="RCS 편집기">
-      </div>
+    <div class="screenshot-box">
+      <img src="rcs_send_page.png" alt="RCS 편집기">
     </div>
-    <input type="file" id="file1" accept="image/*" style="display:none" onchange="loadImg(this,'box1')">
     <p class="project-desc">10개 이상의 UI 요소가 실시간으로 상호작용하는 RCS 메시지 편집기 신규 설계. 메시지 입력·미리보기 동기화·버튼 동적 구성 등 복잡한 도메인을 유지보수 가능한 구조로 구현.</p>
     <ul class="bullets">
       <li><strong>무한 호출 문제 해결</strong> — 메서드 간 상호 호출 문제를 단일 진입점 + 순차 호출 구조로 개선</li>
@@ -196,7 +186,6 @@
     </div>
   </div>
 
-  <!-- Project 2 -->
   <div class="project-card fade-in">
     <div class="project-header">
       <span class="project-title">발송 결과 조회 시스템 개선</span>
@@ -205,12 +194,9 @@
     <div class="project-stacks">
       <span class="stack">JavaScript</span><span class="stack">HTML/CSS</span>
     </div>
-    <div class="screenshot-box" onclick="document.getElementById('file2').click()">
-      <div class="screenshot-placeholder">
-        <img src="result_page" alt="발송결과 페이지">
-      </div>
+    <div class="screenshot-box">
+      <img src="result_page.png" alt="발송결과 페이지">
     </div>
-    <input type="file" id="file2" accept="image/*" style="display:none" onchange="loadImg(this,'box2')">
     <p class="project-desc">문자 중심 발송 결과 조회 화면을 복수 매체로 확장. 발송 유형만 다른 동일 역할 함수 중복과 if-else 분기 폭증 문제를 공통 렌더링 파이프라인으로 재설계.</p>
     <ul class="bullets">
       <li><strong>매체 객체 기반 공통 파이프라인</strong> — API URI·마크업 함수 등을 매체 객체로 정의, 객체 교체만으로 동작</li>
@@ -223,7 +209,6 @@
     </div>
   </div>
 
-  <!-- Project 3 -->
   <div class="project-card fade-in">
     <div class="project-header">
       <span class="project-title">설비 모니터링 대시보드</span>
@@ -232,12 +217,9 @@
     <div class="project-stacks">
       <span class="stack">React.js</span><span class="stack">Spring Boot</span><span class="stack">MongoDB</span><span class="stack">Python</span><span class="stack">Naver Cloud</span>
     </div>
-    <div class="screenshot-box" onclick="document.getElementById('file3').click()">
-      <div class="screenshot-placeholder">
-       <img src="dashboard.png" alt="대시보드">
-      </div>
+    <div class="screenshot-box">
+      <img src="dashboard.png" alt="대시보드">
     </div>
-    <input type="file" id="file3" accept="image/*" style="display:none" onchange="loadImg(this,'box3')">
     <p class="project-desc">공기질·설비 데이터 모니터링 대시보드를 기획·개발·배포까지 1인 주도. 프론트엔드 외 백엔드, 클라우드 인프라, 리눅스 서버, 파이썬 센서 수집까지 전 영역 구축.</p>
     <ul class="bullets">
       <li><strong>성능 최적화</strong> — 5개 분산 API 통합 + 쿼리 개선으로 초기 로딩 12초 → 4.9초 (59% 단축)</li>
@@ -250,7 +232,6 @@
     </div>
   </div>
 
-  <!-- Project 4 -->
   <div class="project-card fade-in">
     <div class="project-header">
       <span class="project-title">Tunit Web</span>
@@ -259,18 +240,54 @@
     <div class="project-stacks">
       <span class="stack">React 19</span><span class="stack">TypeScript</span><span class="stack">TanStack Query v5</span><span class="stack">Firebase Auth</span><span class="stack">Tailwind CSS</span>
     </div>
-    <div class="screenshot-box" onclick="document.getElementById('file4').click()">
-      <div class="screenshot-placeholder">
-        <img src="IMG_3283.PNG" alt="tunit">
-      </div>
+    <div class="screenshot-box">
+      <img src="IMG_3283.PNG" alt="tunit">
     </div>
-    <input type="file" id="file4" accept="image/*" style="display:none" onchange="loadImg(this,'box4')">
     <p class="project-desc">1:1 레슨 예약/결제 관리 서비스. 복잡한 예약 도메인을 프론트엔드 아키텍처 레벨에서 안정적으로 모델링하는 것을 목표로 설계.</p>
     <ul class="bullets">
       <li><strong>캘린더 예약 불가 시간 계산</strong> — 정기 레슨·일회성 예약·휴무 세 소스를 Set 합집합으로 통합, 분 단위 정수 변환으로 포맷 버그 방어</li>
       <li><strong>역할별 상태 전이 중앙화</strong> — <code>Record&lt;ContractStatusCode, ContractStatusCode[]&gt;</code> 타입으로 단일 정의, TypeScript 컴파일러가 누락 케이스 감지</li>
       <li><strong>공통 컴포넌트</strong> — FormField 합성 패턴, Toast Context 전역 제공으로 prop drilling 제거</li>
     </ul>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="career">
+  <p class="section-label">Career & Education</p>
+  <h2 class="section-title">경력 및 학력</h2>
+  <div class="timeline">
+    <div class="tl-item fade-in">
+      <div class="tl-dot current"></div>
+      <div class="tl-content">
+        <div class="tl-header">
+          <span class="tl-company">다우기술</span>
+          <span class="tl-period">2021.09 — 현재</span>
+        </div>
+        <p class="tl-role">Frontend Developer</p>
+      </div>
+    </div>
+    <div class="tl-item fade-in">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-header">
+          <span class="tl-company">어썸레이</span>
+          <span class="tl-period">2020.10 — 2021.08</span>
+        </div>
+        <p class="tl-role">Frontend Developer · 1인 개발</p>
+      </div>
+    </div>
+    <div class="tl-item fade-in">
+      <div class="tl-dot edu"></div>
+      <div class="tl-content">
+        <div class="tl-header">
+          <span class="tl-company">충북대학교</span>
+          <span class="tl-period">2014.03 — 2019.02</span>
+        </div>
+        <p class="tl-role">정보통신공학부</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -314,7 +331,11 @@
 
 <footer>
   <p style="margin-bottom:4px;">김연주 · Frontend Developer</p>
-  <p>duswn1208@naver.com · https://github.duswn1208</p>
+  <p>
+    <a href="mailto:duswn1208@naver.com" style="color: var(--accent2); text-decoration:none;">duswn1208@naver.com</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/duswn1208" target="_blank" style="color: var(--accent2); text-decoration:none;">GitHub</a>
+  </p>
 </footer>
 
 <script>
@@ -322,30 +343,6 @@
     els.forEach(el => { if(el.isIntersecting) el.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  function loadImg(input, boxId) {
-    const file = input.files[0];
-    if (!file) return;
-    const url = URL.createObjectURL(file);
-    const box = input.closest('.project-card').querySelector('.screenshot-box');
-    box.innerHTML = `<img src="${url}" alt="screenshot">`;
-    box.style.height = 'auto';
-  }
-
-  document.querySelectorAll('.screenshot-box').forEach(box => {
-    box.addEventListener('dragover', e => { e.preventDefault(); box.style.borderColor = '#7c6ef5'; });
-    box.addEventListener('dragleave', () => { box.style.borderColor = ''; });
-    box.addEventListener('drop', e => {
-      e.preventDefault();
-      box.style.borderColor = '';
-      const file = e.dataTransfer.files[0];
-      if (file && file.type.startsWith('image/')) {
-        const url = URL.createObjectURL(file);
-        box.innerHTML = `<img src="${url}" alt="screenshot">`;
-        box.style.height = 'auto';
-      }
-    });
-  });
 </script>
 </body>
 </html>
