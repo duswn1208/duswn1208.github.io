@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>김연주 · Backend Engineer</title>
+<meta name="description" content="반복되는 비효율을 구조로 끝내는 백엔드 엔지니어. 동시성 제어, 인프라 디버깅, 공통 라이브러리 설계에 강점." />
+
+<link rel="stylesheet" as="style" crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+
+<style>
+  :root {
+    --navy: #1a365d;
+    --accent: #2c5282;
+    --accent-soft: #4299e1;
+    --dark: #1a202c;
+    --gray-900: #2d3748;
+    --gray-700: #4a5568;
+    --gray-500: #718096;
+    --gray-300: #cbd5e0;
+    --gray-200: #e2e8f0;
+    --gray-100: #edf2f7;
+    --gray-50: #f7fafc;
+    --bg: #ffffff;
+    --highlight-bg: #fef5e7;
+    --highlight-text: #975a16;
+    --quote-bg: #f0f5fb;
+
+    --radius: 10px;
+    --radius-sm: 6px;
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, .04);
+    --shadow: 0 4px 16px rgba(15, 23, 42, .06);
+
+    --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+                 system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo',
+                 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--gray-900);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: var(--accent); text-decoration: none; transition: color .15s ease; }
+  a:hover { color: var(--navy); text-decoration: underline; }
+  h1, h2, h3, h4 { margin: 0; line-height: 1.35; color: var(--navy); font-weight: 700; }
+  p, ul { margin: 0; }
+  ul { padding-left: 0; list-style: none; }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ─── 네비 ─────────────────────────── */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255, 255, 255, .92);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between; height: 56px;
+  }
+  .nav-brand { font-weight: 700; color: var(--navy); font-size: 15px; letter-spacing: -.01em; }
+  .nav-links { display: flex; gap: 20px; font-size: 13.5px; color: var(--gray-700); }
+  .nav-links a { color: var(--gray-700); font-weight: 500; }
+  .nav-links a:hover { color: var(--navy); text-decoration: none; }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* ─── 히어로 ─────────────────────────── */
+  header.hero { padding: 72px 0 40px; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 12px; font-weight: 600;
+    color: var(--accent);
+    background: #ebf8ff;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    letter-spacing: .02em;
+  }
+  .hero-name {
+    font-size: 44px;
+    letter-spacing: -.025em;
+    margin-bottom: 8px;
+  }
+  .hero-tagline {
+    font-size: 21px;
+    color: var(--gray-900);
+    font-weight: 600;
+    line-height: 1.45;
+    margin-bottom: 18px;
+    max-width: 620px;
+    letter-spacing: -.01em;
+  }
+  .hero-tagline em {
+    font-style: normal;
+    background: linear-gradient(transparent 62%, #fff3bf 62%);
+    padding: 0 2px;
+  }
+  .hero-sub {
+    font-size: 15px; color: var(--gray-700); font-weight: 500; margin-bottom: 26px;
+  }
+  .hero-sub .dot { display: inline-block; margin: 0 8px; color: var(--gray-300); }
+  .hero-contact {
+    display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; color: var(--gray-700);
+  }
+  .hero-contact a {
+    color: var(--gray-700); display: inline-flex; align-items: center; gap: 6px;
+  }
+  .hero-contact a:hover { color: var(--accent); text-decoration: none; }
+  .hero-contact svg { width: 16px; height: 16px; }
+
+  /* ─── About ─────────────────────────── */
+  .about {
+    padding: 32px 0 8px;
+  }
+  .about-card {
+    padding: 26px 28px;
+    background: var(--quote-bg);
+    border-radius: var(--radius);
+    border-left: 4px solid var(--accent);
+  }
+  .about-card p {
+    font-size: 15.5px;
+    color: var(--gray-900);
+    line-height: 1.8;
+  }
+  .about-card p + p { margin-top: 10px; }
+  .about-card strong { color: var(--navy); }
+
+  /* ─── Impact 숫자 ─────────────────────────── */
+  .impact {
+    padding: 48px 0 16px;
+  }
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .impact-card {
+    padding: 22px 18px;
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    text-align: center;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .impact-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+  .impact-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    margin-bottom: 8px;
+  }
+  .impact-num small { font-size: 16px; font-weight: 700; color: var(--accent); }
+  .impact-label {
+    font-size: 12.5px;
+    color: var(--gray-700);
+    line-height: 1.4;
+  }
+  @media (max-width: 720px) {
+    .impact-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ─── 섹션 공통 ─────────────────────────── */
+  section { padding: 56px 0; border-bottom: 1px solid var(--gray-100); }
+  section:last-of-type { border-bottom: 0; }
+  .section-title {
+    font-size: 22px; letter-spacing: -.01em; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::before {
+    content: ''; display: inline-block;
+    width: 4px; height: 22px;
+    background: var(--navy); border-radius: 2px;
+  }
+  .section-lead {
+    font-size: 14px;
+    color: var(--gray-500);
+    margin-bottom: 26px;
+    margin-left: 14px;
+  }
+
+  /* ─── Values ─────────────────────────── */
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .value {
+    padding: 22px 22px;
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .value:hover {
+    border-color: var(--accent-soft);
+    transform: translateY(-1px);
+  }
+  .value-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .08em;
+    margin-bottom: 8px;
+  }
+  .value-title {
+    font-size: 16px;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -.005em;
+  }
+  .value-body {
+    font-size: 13.8px;
+    color: var(--gray-700);
+    line-height: 1.65;
+  }
+  @media (max-width: 640px) {
+    .values-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── 기술 스택 ─────────────────────────── */
+  .tech-grid { display: grid; gap: 14px; }
+  .tech-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    align-items: start;
+    gap: 16px;
+    padding: 14px 18px;
+    background: var(--gray-50);
+    border-radius: var(--radius-sm);
+  }
+  .tech-label { font-weight: 700; color: var(--navy); font-size: 13.5px; }
+  .tech-items { font-size: 14px; color: var(--gray-900); line-height: 1.7; }
+  @media (max-width: 560px) { .tech-row { grid-template-columns: 1fr; gap: 4px; } }
+
+  /* ─── 경력 (타임라인) ─────────────────────────── */
+  .timeline { position: relative; padding-left: 18px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 4px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: var(--gray-200);
+  }
+  .tl-item { position: relative; padding-bottom: 24px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -18px; top: 8px;
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  .tl-meta {
+    font-size: 12.5px;
+    color: var(--gray-500);
+    margin-bottom: 2px;
+  }
+  .tl-title {
+    font-size: 16px;
+    color: var(--gray-900);
+    font-weight: 700;
+  }
+  .tl-title .role {
+    margin-left: 8px;
+    font-weight: 500;
+    color: var(--gray-700);
+    font-size: 13.5px;
+  }
+  .tl-desc {
+    font-size: 14px;
+    color: var(--gray-700);
+    margin-top: 4px;
+  }
+
+  /* ─── 프로젝트 ─────────────────────────── */
+  .projects { display: grid; gap: 26px; }
+  .project {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow .2s ease;
+  }
+  .project:hover { box-shadow: var(--shadow); }
+  .project-header { padding: 22px 24px 14px; }
+  .project-num {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .project-title {
+    font-size: 18px;
+    color: var(--navy);
+    margin-bottom: 14px;
+    letter-spacing: -.005em;
+    line-height: 1.4;
+  }
+  .project-oneline {
+    font-size: 13.5px;
+    color: var(--gray-700);
+    font-style: italic;
+    line-height: 1.65;
+  }
+  .project-body { padding: 6px 24px 18px; }
+  .project-block { margin-top: 14px; }
+  .project-block h4 {
+    font-size: 12.5px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .project-block ul li {
+    font-size: 14px;
+    color: var(--gray-900);
+    line-height: 1.7;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+  .project-block ul li::before {
+    content: '·';
+    color: var(--gray-500);
+    position: absolute;
+    left: 4px; top: -1px;
+    font-weight: 700;
+  }
+  .project-block b, .project-block strong {
+    background: var(--highlight-bg);
+    color: var(--highlight-text);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-weight: 700;
+  }
+  code {
+    font-family: var(--font-mono);
+    font-size: .9em;
+    background: var(--gray-100);
+    color: var(--accent);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+  .project-reflect {
+    margin: 6px 24px 24px;
+    padding: 14px 16px;
+    background: var(--gray-100);
+    border-radius: var(--radius-sm);
+    font-size: 13.5px;
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+  .project-reflect .label {
+    font-weight: 700;
+    color: var(--navy);
+    margin-right: 6px;
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 4px;
+  }
+  .project-reflect .label::after { content: ''; display: block; }
+
+  /* ─── 사이드 ─────────────────────────── */
+  .side {
+    padding: 22px 24px;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    background: #ffffff;
+  }
+  .side-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 12px; margin-bottom: 6px;
+  }
+  .side-name { font-size: 18px; color: var(--navy); font-weight: 700; }
+  .side-sub { font-size: 13.5px; color: var(--gray-700); margin-left: 6px; font-weight: 500; }
+  .side-progress {
+    font-size: 12px;
+    color: var(--accent);
+    background: #ebf8ff;
+    padding: 3px 9px;
+    border-radius: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .side-stack { font-size: 13px; color: var(--gray-700); margin-bottom: 14px; }
+  .side-stack b { color: var(--navy); }
+  .side-items { display: grid; gap: 10px; }
+  .side-item { font-size: 14px; color: var(--gray-900); line-height: 1.7; }
+  .side-item .label { color: var(--accent); font-weight: 700; margin-right: 6px; }
+
+  /* ─── Currently Exploring ─────────────────────────── */
+  .explore-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .explore {
+    padding: 18px 20px;
+    background: #ffffff;
+    border: 1px dashed var(--gray-300);
+    border-radius: var(--radius);
+  }
+  .explore-title {
+    font-size: 14px;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .explore-title::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .explore-body { font-size: 13px; color: var(--gray-700); line-height: 1.6; }
+  @media (max-width: 720px) {
+    .explore-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── 기타 / 학력 ─────────────────────────── */
+  .misc-list { display: grid; gap: 8px; }
+  .misc-list li {
+    font-size: 14px; color: var(--gray-900);
+    padding-left: 14px; position: relative;
+  }
+  .misc-list li::before {
+    content: '·'; color: var(--gray-500);
+    position: absolute; left: 4px; top: -1px;
+    font-weight: 700;
+  }
+  .misc-list li b { color: var(--navy); font-weight: 700; }
+
+  /* ─── 푸터 ─────────────────────────── */
+  footer {
+    padding: 40px 0 60px;
+    border-top: 1px solid var(--gray-200);
+    text-align: center;
+    color: var(--gray-500);
+    font-size: 13px;
+  }
+  footer .links {
+    margin-bottom: 8px;
+    display: flex; gap: 18px; justify-content: center;
+  }
+
+  /* ─── 모바일 ─────────────────────────── */
+  @media (max-width: 640px) {
+    body { font-size: 14.5px; }
+    .hero-name { font-size: 34px; }
+    .hero-tagline { font-size: 18px; }
+    .section-title { font-size: 19px; }
+    .container { padding: 0 18px; }
+    header.hero { padding: 52px 0 28px; }
+    section { padding: 40px 0; }
+    .impact-num { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── 상단 네비 ─────────────────────────── -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <div class="nav-brand">김연주 · Backend</div>
+    <div class="nav-links">
+      <a href="#about">소개</a>
+      <a href="#values">가치관</a>
+      <a href="#stack">스택</a>
+      <a href="#projects">프로젝트</a>
+      <a href="#explore">관심사</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── 히어로 ─────────────────────────── -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-tag">BACKEND ENGINEER · 경력 5년 7개월</div>
+    <h1 class="hero-name">김연주</h1>
+    <p class="hero-tagline">
+      반복되는 비효율을<br>
+      <em>구조로 끝내는 백엔드 엔지니어</em>
+    </p>
+    <p class="hero-sub">
+      Java / Spring Boot
+      <span class="dot">·</span>
+      Redis / MongoDB
+      <span class="dot">·</span>
+      장애 시뮬레이션 · 동시성 · 공통 라이브러리 설계
+    </p>
+    <div class="hero-contact">
+      <a href="mailto:duswn1208@naver.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        duswn1208@naver.com
+      </a>
+      <a href="tel:01041907387">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        010-4190-7387
+      </a>
+      <a href="https://github.com/duswn1208/backend" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.3-3.2-.1-.4-.6-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.3.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+        github.com/duswn1208/backend
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ─── About (이력서에 없음) ─────────────────────────── -->
+<div class="about container" id="about">
+  <div class="about-card">
+    <p>
+      안녕하세요, 5년차 백엔드 엔지니어 김연주입니다.
+      다우기술에서 발송 시스템 백엔드를 맡고 있고, Java/Spring 기반으로 일하고 있습니다.
+    </p>
+    <p>
+      업무하면서 반복되는 작업이나 비효율이 보이면 공통 모듈로 정리해두는 편입니다.
+      중복 발송을 막는 분산 락 라이브러리, 좀비 커넥션 장애 패치, 쓰기 락으로 CPU를 다 잡아먹던
+      백그라운드 작업의 격리 — 이런 작업들이 그런 흐름에서 나왔다고 생각합니다.
+    </p>
+  </div>
+</div>
+
+<!-- ─── Impact 숫자 (이력서에 없음) ─────────────────────────── -->
+<div class="impact container">
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-num">60<small>%</small></div>
+      <div class="impact-label">공통 라이브러리 적용<br>비용 절감</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-num">90<small>→</small>30<small>%</small></div>
+      <div class="impact-label">서버 CPU 점유율<br>안정화</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-num">5<small>개</small></div>
+      <div class="impact-label">표준화 모듈<br>적용 서비스</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-num">5<small>년</small> 7<small>개월</small></div>
+      <div class="impact-label">백엔드<br>경력</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Values (이력서에 없음) ─────────────────────────── -->
+<section id="values">
+  <div class="container">
+    <h2 class="section-title">일할 때 중요하게 생각하는 것</h2>
+    <div class="values-grid">
+      <div class="value">
+        <div class="value-num">01</div>
+        <div class="value-title">근본 원인까지 본다</div>
+        <div class="value-body">
+          인덱스 추가하고 나서 오히려 4초로 악화되는 경험을 한 번 하고 나니, 그 이후 "왜?"를 두 번 더 묻게 되었습니다.
+          보이는 증상이 아니라 원인을 봐야 진짜 해결된다고 생각합니다.
+        </div>
+      </div>
+      <div class="value">
+        <div class="value-num">02</div>
+        <div class="value-title">실패 시나리오도 같이 본다</div>
+        <div class="value-body">
+          정상 흐름이 동작하는 건 기본이고, 장애 상황에서 시스템이 어떻게 동작하는지가
+          가용성을 만든다고 생각합니다. <code>kill -STOP</code>으로 좀비 커넥션을 일부러 재현해본 것도 같은 맥락입니다.
+        </div>
+      </div>
+      <div class="value">
+        <div class="value-num">03</div>
+        <div class="value-title">반복은 모듈로 정리한다</div>
+        <div class="value-body">
+          팀이 같은 문제를 다시 푸는 게 가장 큰 비효율이라고 생각합니다.
+          좋은 패턴은 공통 라이브러리로 정리해두고, 다른 팀이 쓰기 쉬운 인터페이스인지부터 신경 쓰는 편입니다.
+        </div>
+      </div>
+      <div class="value">
+        <div class="value-num">04</div>
+        <div class="value-title">사후 대응보다 사전 차단</div>
+        <div class="value-body">
+          장애는 발생한 다음 처리하는 것보다 진입 단계에서 차단하는 게 훨씬 비용 효율적이라고 생각합니다.
+          분산 락도 결국 같은 맥락에서 나온 작업이었습니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 기술 스택 ─────────────────────────── -->
+<section id="stack">
+  <div class="container">
+    <h2 class="section-title">기술 스택</h2>
+    <div class="tech-grid">
+      <div class="tech-row">
+        <div class="tech-label">백엔드</div>
+        <div class="tech-items">Java 17, Spring Boot, MyBatis, JPA, Kafka (Redpanda)</div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-label">데이터베이스</div>
+        <div class="tech-items">Redis (Sentinel · 분산락 · Lettuce 튜닝), MongoDB (인덱스 · I/O 튜닝), PostgreSQL, Oracle</div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-label">인프라 · 도구</div>
+        <div class="tech-items">Jenkins (CI/CD 1인 구축), Docker (사이드 프로젝트 컨테이너 구성), NCP</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 경력 (타임라인 형태) ─────────────────────────── -->
+<section id="experience">
+  <div class="container">
+    <h2 class="section-title">경력</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-meta">2021.09 ~ 현재 (4년 8개월)</div>
+        <div class="tl-title">
+          다우기술
+          <span class="role">백엔드 엔지니어 · 선임</span>
+        </div>
+        <div class="tl-desc">발송 서비스 웹 백엔드 / 비즈니스 · 어드민 기능 개발 / 공통 라이브러리 설계</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-meta">2020.10 ~ 2021.08 (11개월)</div>
+        <div class="tl-title">
+          어썸레이
+          <span class="role">풀스택 백엔드 엔지니어</span>
+        </div>
+        <div class="tl-desc">제조업 설비 모니터링 시스템 전 영역(Back / Front / Infra) 1인 주도 개발</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 주요 프로젝트 (스토리텔링 + 회고 존대어) ─────────────────────────── -->
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title">주요 프로젝트 및 트러블슈팅</h2>
+    <div class="projects">
+
+      <!-- 프로젝트 1 -->
+      <article class="project">
+        <div class="project-header">
+          <div class="project-num">Project 01</div>
+          <h3 class="project-title">Redis 기반 중복 발송 방지 공통 라이브러리 설계</h3>
+          <div class="project-oneline">
+            Redis <code>SETNX</code> 기반 분산 락과 수신자 샘플링 정규화 구조를 표준화한 공통 모듈.
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-block">
+            <h4>해결</h4>
+            <ul>
+              <li>사용자 고유 키 · 발송 유형 · 메시지 본문 데이터를 조합한 해시 생성 로직 구현</li>
+              <li>대규모 수신자 발송 환경 부하 방지를 위한 클라이언트 정의형 수신자 샘플링 구조 설계</li>
+              <li>Redis <code>SETNX</code> + TTL(60분) 분산 락으로 진입 단계에서 중복 요청 원천 차단, 발송 퍼블리싱 실패 시 캐싱 키 즉시 삭제 롤백 전략 수립</li>
+            </ul>
+          </div>
+          <div class="project-block">
+            <h4>성과</h4>
+            <ul>
+              <li>중복 발송 관련 CS 유입 원천 방지 · <strong>공통 라이브러리화로 팀 내 5개 서비스 적용 비용 60% 절감</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="project-reflect">
+          <span class="label">회고</span>
+          공통 모듈이라도 도입 비용이 높으면 다른 팀에서 안 쓰게 된다고 생각합니다.
+          이 프로젝트 이후로 인터페이스 단순화를 처음부터 신경 쓰게 되었습니다.
+        </div>
+      </article>
+
+      <!-- 프로젝트 2 -->
+      <article class="project">
+        <div class="project-header">
+          <div class="project-num">Project 02</div>
+          <h3 class="project-title">Redis Sentinel Failover 시 Lettuce 커넥션 장애 대응</h3>
+          <div class="project-oneline">
+            네트워크 순단 시 Lettuce 커넥션 스태킹으로 웹 서버 스레드가 마비되는 장애를 자동 복구하도록 개선.
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-block">
+            <h4>문제</h4>
+            <ul>
+              <li>Sentinel Failover 후에도 Lettuce가 구(舊) 마스터 IP로 끊임없이 재연결 시도 → 명령 큐 적재(커넥션 스태킹) → Tomcat 스레드 풀 마비로 2차 장애 전파</li>
+            </ul>
+          </div>
+          <div class="project-block">
+            <h4>분석</h4>
+            <ul>
+              <li><code>kill -9</code>는 소켓 폐기로 재현 불가 → <strong><code>kill -STOP</code>으로 Gray Failure(좀비 커넥션) 상태를 정교하게 유도 · 재현 성공</strong></li>
+              <li>단순 타임아웃 · 리트라이 · 풀링 옵션 조정만으로는 죽은 마스터에 매달린 좀비 커넥션 해소 불가 확인</li>
+            </ul>
+          </div>
+          <div class="project-block">
+            <h4>해결</h4>
+            <ul>
+              <li>자동 재연결은 유지하되, 단절 구간에는 명령을 버퍼링하지 않고 즉시 실패 처리(Fail-Fast)하도록 Lettuce 옵션 재구성 → 스레드 풀 마비 방어</li>
+              <li>애플리케이션 레벨에서 PING 기반 연결 유효성 검증을 활성화 → OS 타임아웃을 기다리지 않고 Sentinel이 승격시킨 신규 마스터로 즉시 전환되도록 개선</li>
+            </ul>
+          </div>
+          <div class="project-block">
+            <h4>성과</h4>
+            <ul>
+              <li>Failover 후 <strong>수동 개입 없이 수 초 내 서비스 자동 복구(Self-healing)</strong> 확인</li>
+              <li><code>kill -STOP</code> 기반 장애 시뮬레이션 기법 정립 → 향후 인프라 리스크 대응 프로세스 자산화</li>
+            </ul>
+          </div>
+        </div>
+        <div class="project-reflect">
+          <span class="label">회고</span>
+          오픈소스 라이브러리의 기본 옵션이 우리 환경에 안 맞을 수 있다는 걸 확인한 프로젝트라고 생각합니다.
+          이 일을 계기로 새 라이브러리를 도입할 때 "이게 죽으면 우리 서비스는 어떻게 동작하나"부터 확인하는 습관이 생겼습니다.
+        </div>
+      </article>
+
+      <!-- 프로젝트 3 -->
+      <article class="project">
+        <div class="project-header">
+          <div class="project-num">Project 03</div>
+          <h3 class="project-title">백그라운드 데이터 수집 병목 분석 및 MongoDB I/O 최적화</h3>
+          <div class="project-oneline">
+            오픈 전 가상 서버의 CPU 90~100% 병목 원인을 추적하고, 데이터 수집 로직을 격리해 안정화한 프로젝트.
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-block">
+            <h4>분석</h4>
+            <ul>
+              <li>CPU 90~100% 임계치 도달로 정상 테스트 불가 → MongoDB가 주원인임을 시스템 리소스 추적으로 확인</li>
+              <li>조회 지연(2,000ms)을 인덱스로 해결 시도 → <strong>오히려 4초 이상으로 악화</strong> → 조회가 아닌 <strong>쓰기(Write) 트래픽에 의한 락(Lock) 병목</strong>임을 인지</li>
+              <li>백그라운드 수집 프로그램 격리 테스트 → 센서 활성 여부 무관하게 Full-Table Write를 무한 루프로 수행하던 구조적 결함 규명</li>
+            </ul>
+          </div>
+          <div class="project-block">
+            <h4>해결</h4>
+            <ul>
+              <li>무거운 수집 로직을 메인 루프에서 제거 → <strong>1시간 주기 독립 배치(Cron)로 격리 분리</strong></li>
+              <li>비활성 센서는 업데이트 대상에서 사전 필터링하는 방어 로직 추가 → 불필요한 디스크 I/O 원천 차단</li>
+            </ul>
+          </div>
+          <div class="project-block">
+            <h4>성과</h4>
+            <ul>
+              <li><strong>서버 CPU 사용률 90% → 30% 안정화, 디스크 쓰기 22KB → 15KB 감축</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="project-reflect">
+          <span class="label">회고</span>
+          느린 조회를 인덱스로 해결하려다 더 악화된 경험이었습니다.
+          이 일 이후로는 증상이 아니라 원인을 먼저 보려고 노력하게 되었고,
+          가설을 세우고 격리 테스트로 좁혀가는 방식이 결국 가장 빠른 디버깅 경로라고 생각합니다.
+        </div>
+      </article>
+
+      <!-- 프로젝트 4 -->
+      <article class="project">
+        <div class="project-header">
+          <div class="project-num">Project 04</div>
+          <h3 class="project-title">외부 AI 서비스 연동 중계 API 개발</h3>
+          <div class="project-oneline">
+            사내 AI팀이 제공하는 문자 생성 · 추천 API 결과를 메인 웹 서비스에 결합하기 위한 RESTful 중계 API.
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-block">
+            <h4>해결</h4>
+            <ul>
+              <li>웹 클라이언트 파라미터(발송 목적 · 타겟층 레이블 등)를 외부 AI 연동 서버 통신 규격에 맞게 정제 → HTTP 통신 인터페이스로 라우팅 처리</li>
+              <li>외부 AI 서버가 리턴한 JSON 응답을 안정적으로 파싱한 후 프론트엔드 렌더링 포맷으로 가공하여 중계 엔드포인트 구축</li>
+            </ul>
+          </div>
+          <div class="project-block">
+            <h4>성과</h4>
+            <ul>
+              <li>기존 레거시 아키텍처에 영향 없이 신규 외부 서비스 유연 · 신속 통합 완료</li>
+              <li>외부 코어 레이어 ↔ 비즈니스 레이어 분리 구조에서 API 연동 · 클라이언트 대응 데이터 핸들링 역량 확보</li>
+            </ul>
+          </div>
+        </div>
+        <div class="project-reflect">
+          <span class="label">회고</span>
+          외부 서비스 연동은 본 서비스에 영향을 주지 않도록 레이어 분리가 중요하다고 생각합니다.
+          응답 검증과 명확한 인터페이스 계약을 미리 잡아두는 게 결국 통합 속도를 좌우하는 부분이었습니다.
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── 사이드 프로젝트 ─────────────────────────── -->
+<section id="side">
+  <div class="container">
+    <h2 class="section-title">사이드 프로젝트</h2>
+    <div class="side">
+      <div class="side-header">
+        <div>
+          <span class="side-name">TUNIT</span>
+          <span class="side-sub">1:1 레슨 및 예약 관리 서비스</span>
+        </div>
+        <div class="side-progress">진행률 80%</div>
+      </div>
+      <div class="side-stack">
+        <b>스택:</b> Spring Boot, Java 17, JPA, React.js, Kafka(Redpanda), PostgreSQL, FCM, Docker
+      </div>
+      <div class="side-items">
+        <div class="side-item">
+          <span class="label">Docker 기반 인프라 구성</span>
+          Redpanda(Kafka) · PostgreSQL을 컨테이너로 구성하여 로컬 / 개발 환경에서 운영
+        </div>
+        <div class="side-item">
+          <span class="label">Kafka 동시성 제어</span>
+          대규모 동시 예약 요청 환경의 데이터 정합성 이슈를 해결하기 위해 요청을 메시지 큐에 적재하여 순차 처리하는 Redpanda 큐잉 구조 도입 → 동시성 문제를 구조적으로 해결
+        </div>
+        <div class="side-item">
+          <span class="label">AOP 기반 관심사 분리</span>
+          <code>@SendNotification</code> 커스텀 어노테이션 + SpEL 설계로 핵심 비즈니스(예약 · 결제) 로직과 알림 퍼블리싱 로직 격리. 외부 알림 플랫폼 장애 시에도 메인 프로세스 정상 완결 보장
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Currently Exploring (이력서에 없음) ─────────────────────────── -->
+<section id="explore">
+  <div class="container">
+    <h2 class="section-title">요즘 관심 가지고 보는 것</h2>
+    <div class="explore-grid">
+      <div class="explore">
+        <div class="explore-title">컨테이너 운영</div>
+        <div class="explore-body">
+          사이드 프로젝트에서 docker-compose로 Redpanda와 PostgreSQL을 직접 띄워 쓰고 있고,
+          운영 관점에서 더 깊이 다뤄보고 싶은 영역이라고 생각합니다.
+        </div>
+      </div>
+      <div class="explore">
+        <div class="explore-title">Spring AI / RAG</div>
+        <div class="explore-body">
+          외부 AI 서비스를 백엔드와 연결한 경험은 있지만 RAG 자체는 다뤄본 적이 없어서,
+          최근에 Spring AI와 벡터 DB 기반 구조를 학습하기 시작했습니다.
+        </div>
+      </div>
+      <div class="explore">
+        <div class="explore-title">고가용성 패턴</div>
+        <div class="explore-body">
+          Redis 트러블슈팅 이후 분산 시스템에서 장애가 어떻게 전파되고 차단되는지에 관심이 생겼고,
+          관련 사례를 꾸준히 찾아보고 있습니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 기타 활동 및 학력 ─────────────────────────── -->
+<section id="misc">
+  <div class="container">
+    <h2 class="section-title">기타 활동 및 학력</h2>
+    <ul class="misc-list">
+      <li><b>사내 기술 공유 (2024)</b> · Git 관련 명령어를 스크립트화하여 편리하게 사용할 수 있도록 센터 공유</li>
+      <li><b>사내 기술 공유 (2023)</b> · 레거시 Java 17 전환 프로젝트 진행 후 회고 발표</li>
+      <li><b>충북대학교 정보통신공학부 졸업</b> · 2014.03 ~ 2019.02</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── 푸터 ─────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="links">
+      <a href="mailto:duswn1208@naver.com">Email</a>
+      <a href="https://github.com/duswn1208/backend" target="_blank" rel="noopener">GitHub</a>
+      <a href="./index.html">Frontend Portfolio →</a>
+    </div>
+    <div>© 김연주 · Backend Engineer Portfolio</div>
+  </div>
+</footer>
+
+</body>
+</html>
