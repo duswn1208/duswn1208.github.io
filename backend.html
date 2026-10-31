@@ -84,17 +84,19 @@ footer a{color:var(--accent2);text-decoration:none}
 @media(max-width:600px){.about-item{grid-template-columns:1fr;gap:.75rem}.nav-links{gap:14px}}
 @media(prefers-reduced-motion:reduce){.fade-in{opacity:1;transform:none;transition:none}}
 .tl-list{margin-top:.6rem;gap:6px}.tl-list li{font-size:13px;color:#b8b8c8;padding-left:1.1rem;position:relative;line-height:1.75;word-break:keep-all}.tl-list li::before{content:"—";position:absolute;left:0;color:var(--accent);font-size:11px;top:4px}.tl-list a,.about-right a{color:var(--accent2);text-decoration:none}.tl-list a:hover,.about-right a:hover{text-decoration:underline}.more>summary{cursor:pointer;color:var(--accent2);font-size:14px;margin:1.5rem 0 1rem}.more>summary:hover{color:var(--text)}.project-card{scroll-margin-top:72px}
+.tl-list strong{color:var(--text);font-weight:500}
+.struct{margin-top:.7rem;padding:.8rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:8px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.8;color:var(--text);white-space:pre-wrap;word-break:keep-all}
 .detail{margin-top:1rem;padding-top:.5rem;border-top:1px solid var(--border)}.detail>summary{cursor:pointer;color:var(--accent2);font-size:13px;padding:.5rem 0}.detail[open]>summary{margin-bottom:.8rem}.detail .project-desc{margin-top:.2rem}
 </style>
 </head>
 <body>
-<nav><span class="nav-name">김연주</span><div class="nav-links"><a href="#career">경력</a><a href="#about">소개</a><a href="#skills">기술</a><a href="#projects">프로젝트</a><a href="https://duswn1208.github.io/">Frontend</a></div></nav>
+<nav><span class="nav-name">김연주</span><div class="nav-links"><a href="#career">경력</a><a href="#about">소개</a><a href="#skills">기술</a><a href="#projects">프로젝트</a><a href="#troubleshooting">트러블슈팅</a><a href="https://duswn1208.github.io/">Frontend</a></div></nav>
 
 <div class="hero"><div class="fade-in">
 <span class="hero-tag">Backend Developer</span>
-<h1>빠르게 가설을 세우고,<br>공유하며 검증하는<br><span>백엔드 개발자</span></h1>
-<p class="hero-desc">6년차 백엔드 개발자 김연주입니다. 메시지 발송 서비스를 만들고 운영합니다.</p>
-<div class="hero-chips"><span class="chip">Java 17</span><span class="chip">Spring Boot</span><span class="chip">MariaDB</span><span class="chip">Oracle</span><span class="chip">Redis</span><span class="chip">React</span><span class="chip">MongoDB</span></div>
+<h1>더 나은 방향을<br>먼저 제안하는<br><span>백엔드 개발자</span></h1>
+<p class="hero-desc">6년차 백엔드 개발자 김연주입니다. 대규모 메시지 발송 서비스를 만들고 운영합니다. 요구사항을 그대로 구현하는 데서 멈추지 않고, 더 효율적인 방향이 보이면 기획 단계에서 먼저 제안합니다.</p>
+<div class="hero-chips"><span class="chip">Java 17·21</span><span class="chip">Spring Boot</span><span class="chip">MariaDB</span><span class="chip">Oracle</span><span class="chip">Redis</span><span class="chip">RabbitMQ</span><span class="chip">React</span><span class="chip">MongoDB</span></div>
 <div class="hero-btns"><a href="#projects" class="btn btn-primary">프로젝트 보기</a><a href="mailto:duswn1208@naver.com" class="btn btn-secondary">duswn1208@naver.com</a></div>
 </div></div>
 
@@ -103,40 +105,45 @@ footer a{color:var(--accent2);text-decoration:none}
 <section id="career">
 <p class="section-label">Career & Education</p><h2 class="section-title">경력 및 학력</h2>
 <div class="timeline">
-<div class="tl-item fade-in"><div class="tl-dot current"></div><div class="tl-body"><div class="tl-header"><span class="tl-company">다우기술</span><span class="tl-period">2021.09 — 현재</span></div><div class="tl-role">백엔드 개발자 · 5인 팀</div>
-<ul class="tl-list"><li>문자·카카오·RCS 웹 발송 서비스 백엔드 개발·운영</li>
-<li>신규 메일 발송 서비스의 발송 요청 접수 영역 설계·구현 (오픈 전) → <a href="#p-sync">동시성·멱등성 설계</a></li>
-<li>중복 발송 안내 공통 라이브러리 설계·구현 (5개 서비스 적용) → <a href="#p-lib">프로젝트 보기</a></li>
-<li>AI 문자 생성·추천 기능 서비스 연동 (백엔드·프론트)</li>
-<li>운영 장애·CS 원인 분석 → <a href="#p-redis">Redis failover</a>, <a href="#p-oracle">Oracle 날짜 버그</a></li></ul></div></div>
-<div class="tl-item fade-in"><div class="tl-dot"></div><div class="tl-body"><div class="tl-header"><span class="tl-company">어썸레이</span><span class="tl-period">2020.10 — 2021.08</span></div><div class="tl-role">풀스택 백엔드 · 신입 입사, 1인 개발</div>
-<ul class="tl-list"><li>센서 관리, 설비 원격 모니터링, 공기질 대시보드 3개 서비스를 1인 개발하고 배포·운영까지 단독 담당 (Spring Boot, React, MongoDB, Jenkins)</li>
-<li>15분 평균 그래프 조회 30초 → 인덱스 필터 순서 조정으로 개선, 오픈 전 MongoDB 서버 CPU 90% → 30% 해소</li></ul></div></div>
-<div class="tl-item fade-in"><div class="tl-dot edu"></div><div class="tl-body"><div class="tl-header"><span class="tl-company">충북대학교</span><span class="tl-period">2014.03 — 2019.02</span></div><div class="tl-role">정보통신공학부</div></div></div>
+<div class="tl-item fade-in"><div class="tl-dot current"></div><div class="tl-body"><div class="tl-header"><span class="tl-company">다우기술</span><span class="tl-period">2021.09 — 현재</span></div><div class="tl-role">백엔드 개발자 · 5인 팀 · 문자·카카오·RCS(이미지·버튼을 지원하는 차세대 문자) 대규모 웹 발송 서비스</div>
+<ul class="tl-list">
+<li><strong>2026.07 — 현재, 메일 발송 서비스 신규 개발</strong> (오픈 전, 기존 서비스 운영 병행): Java 21·Spring Boot 3.5 기반 구성, 발송 관련 DB 스키마 설계, 메일 발송 요청 영역(본문 생성, 발송 큐 적재 전 검증·승인) 프론트·백엔드 개발 → <a href="#p-mail">프로젝트 보기</a></li>
+<li><strong>2025.07, 중복 발송 안내 공통 라이브러리</strong> 설계·구현, 5개 서비스 적용 → <a href="#p-lib">프로젝트 보기</a></li>
+<li><strong>2023.09 — 현재, 서비스 운영·개선 및 신규 개발</strong>: 회원 관리, 이벤트, 결제·정산, 카카오 알림톡 연동 운영·개선, RCS 신규 추가(프론트 담당), AI 문자 생성·추천 기능 개발(웹 백엔드·프론트)</li>
+<li><strong>월간 이슈 캘린더 기획 제안</strong>: 이슈 클릭 시 AI 추천 문구가 발송창에 바로 입력되고, 발송 로그로 업종별 인기 이슈 통계를 쌓는 구조 (기획 제안해 서비스 반영 진행 중)</li>
+<li><strong>2022.01 — 2023.08, 문자 발송 서비스 재개발</strong> (PHP → Java/Thymeleaf, 15인): 결제·카카오 도메인 백엔드 → <a href="#p-sms">프로젝트 보기</a></li>
+<li>운영 장애·CS 원인 분석 → <a href="#t-redis">Redis failover</a>, <a href="#t-oracle">Oracle 날짜 버그</a></li>
+</ul></div></div>
+<div class="tl-item fade-in"><div class="tl-dot"></div><div class="tl-body"><div class="tl-header"><span class="tl-company">어썸레이</span><span class="tl-period">2020.10 — 2021.08</span></div><div class="tl-role">공기순환 장비 제조사 · 풀스택 백엔드 · 신입 입사, 1인 개발</div>
+<ul class="tl-list">
+<li>센서 관리, 설비 원격 모니터링, 공기질 대시보드 3개 서비스를 1인 개발·배포·운영 (Spring Boot, React, MongoDB, Jenkins, NCP)</li>
+<li>대시보드 조회 개선: 카드마다 요청하던 API 5개를 화면 단위 1회 요청으로 통합, 집계 쿼리를 범위 조회에서 day 일치 조회로 바꾸고 day 인덱스 설정해 집계 4초 → 0.02초</li>
+<li>오픈 전 MongoDB 서버 CPU 90% → 30% → <a href="#t-mongo">원인 추적 보기</a>, Jenkins 배포 자동화 → <a href="#t-jenkins">보기</a></li>
+</ul></div></div>
+<div class="tl-item fade-in"><div class="tl-dot edu"></div><div class="tl-body"><div class="tl-header"><span class="tl-company">충북대학교</span><span class="tl-period">2014.03 — 2019.02</span></div><div class="tl-role">정보통신공학부 (학사)</div></div></div>
 </div></section>
 <hr class="divider">
 
 <section id="about">
 <p class="section-label">About</p><h2 class="section-title">이런 개발자입니다</h2>
 <div class="about-list">
-<div class="about-item fade-in"><div class="about-left"><div class="about-icon">⚡</div><div class="about-title">빠르게 이해하고 실험으로 옮깁니다</div><div class="about-sub">가설을 세우고 직접 돌려 봅니다.</div></div>
+<div class="about-item fade-in"><div class="about-left"><div class="about-icon">💡</div><div class="about-title">요구사항에서 멈추지 않고 먼저 제안합니다</div><div class="about-sub">더 나은 방향이 보이면 기획 단계에서 꺼냅니다.</div></div>
 <div class="about-right"><ul>
-<li>장애 당일, 복구 후 같은 날 개발 서버에서 <strong>재현까지 완료</strong>했습니다. <code>kill -9</code>가 통하지 않자 반복하기 쉬운 <code>kill -STOP</code>으로 같은 증상을 만들었습니다. → <a href="#p-redis">Redis 장애</a></li>
-<li>샘플링 해시를 설계에서 멈추지 않고 <strong>11만 건으로 측정</strong>해 전체 해시로 결정했습니다. → <a href="#p-lib">공통 라이브러리</a></li>
-<li>세션별 <code>NLS_DATE_FORMAT</code> 차이를 쿼리와 로그부터 좁혀 규명했습니다. → <a href="#p-oracle">Oracle 날짜 버그</a></li>
+<li>메일 서비스에서 발송건만으로는 트리거·테스트발송 결과를 묶을 수 없어, 상위 개념인 <strong>캠페인을 제안·설계</strong>했습니다. → <a href="#p-mail">메일 발송 서비스</a></li>
+<li>이미지로만 받던 월간 이슈 캘린더를 DB화해, 이슈 클릭 한 번으로 AI 추천 문구가 발송창에 들어가고 업종별 통계까지 쌓이는 기능을 <strong>기획에 제안</strong>했고, 서비스 반영을 진행하고 있습니다.</li>
+<li>프론트·백엔드를 처음 나눠 개발할 때 메신저로 반복되던 소통을 줄이려 <strong>API 문서화를 제안·작성</strong>했습니다. → <a href="#p-sms">문자 발송 서비스 재개발</a></li>
 </ul></div></div>
-<div class="about-item fade-in"><div class="about-left"><div class="about-icon">🤝</div><div class="about-title">설계는 공유하고, 모르는 건 묻습니다</div><div class="about-sub">혼자 정하지 않고, 확인할 곳에 확인합니다.</div></div>
+<div class="about-item fade-in"><div class="about-left"><div class="about-icon">🔁</div><div class="about-title">같은 문제는 다른 서비스까지 찾아 막습니다</div><div class="about-sub">한 곳의 장애를 그곳에서 끝내지 않습니다.</div></div>
 <div class="about-right"><ul>
-<li>공통 라이브러리의 방향을 정해 <strong>팀에 사전 공유</strong>한 뒤 구현했습니다.</li>
-<li>애매한 요구사항은 사업팀에, 날짜 설정 차이는 DBA에, 재현용 네트워크 차단은 인프라팀에 확인했습니다.</li>
-<li>프론트 화면 흐름(중복 팝업, 조회 전용 API)과 백엔드 책임 분담을 함께 설계했고, 다중 탭 편집권은 프런트 쪽 동작까지 직접 설계했습니다.</li>
-<li>카드마다 팀원이 보완한 부분과 제가 한 부분을 구분해 기록합니다.</li>
+<li>Redis 장애를 해결한 뒤 팀이 맡은 <strong>유사 서비스 5개의 같은 설정</strong>을 점검했습니다. → <a href="#t-redis">Redis 장애</a></li>
+<li>Oracle 날짜 버그와 같은 패턴을 찾아 <strong>다른 서비스까지 18곳</strong>을 직접 수정했습니다. → <a href="#t-oracle">Oracle 날짜 버그</a></li>
+<li>중복 발송 안내를 서비스마다 따로 만들지 않고 <strong>공통 라이브러리로 만들어 5개 서비스에 직접 적용</strong>했습니다. → <a href="#p-lib">공통 라이브러리</a></li>
 </ul></div></div>
-<div class="about-item fade-in"><div class="about-left"><div class="about-icon">🧭</div><div class="about-title">경계를 긋고, 바뀐 결정의 이유를 남깁니다</div><div class="about-sub">한계와 측정하지 못한 것까지 적습니다.</div></div>
+<div class="about-item fade-in"><div class="about-left"><div class="about-icon">🧪</div><div class="about-title">재현하고 측정한 뒤, 물어서 확인합니다</div><div class="about-sub">추측으로 정하지 않습니다.</div></div>
 <div class="about-right"><ul>
-<li>라이브러리는 <strong>메커니즘</strong>, 정책은 <strong>서비스</strong>에 두는 경계를 설계했습니다. → <a href="#p-lib">공통 라이브러리</a></li>
-<li>분산 락 대신 같은 트랜잭션 경계의 DB 행 잠금과 유니크 제약을 택했습니다. → <a href="#p-sync">동시성·멱등성</a></li>
-<li>리뷰에서 <code>autoReconnect(false)</code>의 위험이 제기돼 설정을 바꾸고 그 과정을 남겼습니다. 모든 카드에 한계를 적었습니다.</li>
+<li><code>kill -9</code>로 재현되지 않자 <code>kill -STOP</code>으로 “살아 있지만 응답 못 하는” 상태를 만들어 <strong>장애를 재현</strong>했습니다. → <a href="#t-redis">Redis 장애</a></li>
+<li>샘플링 해시를 설계했지만 <strong>측정(82ms)</strong> 후 오탐 없는 전체 해시로 결정했습니다. → <a href="#p-lib">공통 라이브러리</a></li>
+<li>직접 볼 수 없는 서버 세션은 DBA에게, 재현용 네트워크 차단은 인프라팀에 확인했고, 리뷰에서 지적된 위험은 받아들여 <strong>설정을 번복</strong>했습니다.</li>
 </ul></div></div>
 </div></section>
 <hr class="divider">
@@ -144,130 +151,150 @@ footer a{color:var(--accent2);text-decoration:none}
 <section id="skills">
 <p class="section-label">Skills</p><h2 class="section-title">기술</h2>
 <div class="skills-grid">
-<div class="skill-group fade-in"><div class="skill-group-title">백엔드</div><ul class="skill-bullets"><li>Java 17, Spring Boot</li><li>JPA, MyBatis</li><li>RabbitMQ</li><li>AI API 연동 (문자 생성·추천)</li></ul></div>
-<div class="skill-group fade-in"><div class="skill-group-title">프론트엔드</div><ul class="skill-bullets"><li>React, JavaScript</li><li>백엔드와 API·화면 흐름을 함께 설계</li></ul></div>
+<div class="skill-group fade-in"><div class="skill-group-title">백엔드</div><ul class="skill-bullets"><li>Java 17·21, Spring Boot</li><li>MyBatis</li><li>RabbitMQ</li></ul></div>
+<div class="skill-group fade-in"><div class="skill-group-title">프론트엔드</div><ul class="skill-bullets"><li>React, JavaScript</li></ul></div>
 <div class="skill-group fade-in"><div class="skill-group-title">데이터</div><ul class="skill-bullets"><li>MariaDB, Oracle</li><li>Redis (Sentinel), MongoDB</li></ul></div>
-<div class="skill-group fade-in"><div class="skill-group-title">인프라 / 도구</div><ul class="skill-bullets"><li>Jenkins, NCP, Tomcat</li><li>Grafana</li><li>Docker (사이드 프로젝트: Redpanda, PostgreSQL)</li></ul></div>
+<div class="skill-group fade-in"><div class="skill-group-title">인프라 / 도구</div><ul class="skill-bullets"><li>Linux, Tomcat</li><li>Jenkins (CI/CD 구축 1건, 어썸레이)</li><li>NCP (어썸레이)</li><li>Docker (토이 프로젝트)</li></ul></div>
 </div></section>
 <hr class="divider">
 
 <section id="projects">
 <p class="section-label">Projects</p><h2 class="section-title">프로젝트</h2>
 
+<div class="project-card fade-in" id="p-mail"><div class="project-body">
+<div class="project-header"><span class="project-title">메일 발송 서비스 — 발송 요청 영역 기획·설계·구현</span><span class="project-badge badge-current">현 직장 · 2026.07 — 현재 · 오픈 전</span></div>
+<div class="project-stacks"><span class="stack">Java 21</span><span class="stack">Spring Boot 3.5</span><span class="stack">React</span><span class="stack">MariaDB</span><span class="stack">Redis</span><span class="stack">RabbitMQ</span></div>
+<p class="project-desc">새로 만드는 메일 발송 서비스에서 발송 요청 영역의 기획·설계부터 프론트·백엔드 구현까지 맡았습니다. 발송 관련 DB 스키마를 설계하고, 본문 생성과 발송 큐 적재 전 검증·승인 흐름을 만들었습니다.</p>
+<ul class="project-bullets">
+<li><strong>캠페인 개념 제안·설계</strong> — 조건이 맞을 때마다 자동 발송되는 트리거 발송, 여러 번의 테스트발송, 자동저장까지 묶기 위해 캠페인 – 발송건 – 수신 대상의 3단 구조로 설계하고, 사용자 상태와 발송 처리 상태를 분리</li>
+<li><strong>발송 요청 검증과 큐 역할 분리</strong> — 서비스 정책 검증은 큐 적재 전에 처리해 즉시 안내하고, 큐 이후는 수신자별 분배만 빠르게 처리</li>
+<li><strong>테스트발송 중 본문 수정 차단</strong> — 테스트 완료 전까지 수정·본발송을 막아 의도치 않은 본문 발송 방지</li>
+</ul>
+<div class="project-results"><span class="result-tag">✓ 발송 요청 영역 프론트·백엔드 단독 개발</span><span class="result-tag">✓ Java 21·Spring Boot 3.5 기반 구성</span></div>
+<details class="detail"><summary>자세히 보기</summary>
+<ul class="project-bullets">
+<li><strong>왜 캠페인이 필요했나</strong> — 처음에는 기존 문자처럼 발송건만으로 구성하는 방법도 생각했습니다. 하지만 메일은 사용자가 만든 발송건이 트리거로 계속 발송되고, 발송 결과에서는 트리거를 여러 발송건이 아니라 하나로 보여줘야 했습니다. 한 캠페인에서 테스트발송을 여러 번 할 수 있어야 했고, 발송 페이지에 들어가자마자 제목과 입력값이 자동저장돼 발송하지 않을 내용도 저장되므로, 발송건과는 다른 상위 개념으로 묶어야 했습니다.</li>
+<li><strong>구조와 상태 분리</strong> — 캠페인은 유형(웹발송, 트리거)과 사용자 액션에 따른 상태를 갖습니다. 예를 들어 발송 요청 전이면 임시저장, 요청이 접수되면 진행중, 발송이 끝나면 완료입니다. 발송건의 상태는 순수하게 발송에 필요한 값으로만 구성해, 사용자가 보는 상태와 발송 처리 상태를 나눴습니다.
+<div class="struct">캠페인 · 유형(웹발송/트리거) · 사용자 액션 기준 상태 · 발송일
+ └ 발송건 · 테스트발송 / 본발송 / 트리거 발화분 · 발송 상태
+    └ 수신 대상</div></li>
+<li><strong>설계 중 바꾼 결정: 승인 상태의 위치</strong> — 처음에는 모든 발송건마다 어드민 확인이 필요하다고 해서 승인을 발송건 기준으로 만들었습니다. 하지만 사용자 입장에서는 캠페인이 하나의 발송이고, 트리거는 승인받지 못하면 아예 실행되지 않아야 했기 때문에, 설계 중간에 승인 상태를 캠페인으로 옮겼습니다.</li>
+<li><strong>캠페인의 발송일</strong> — 원래 발송건에 있는 발송일을 캠페인에도 두었습니다. 진행 중인 캠페인은 발송일이 현재 이후면 예약, 이전이면 진행중으로 보여주고, 트리거는 활성화 시작일을 여기에 둔 뒤 발송될 때마다 갱신해 마지막 발송일로 씁니다. 그래서 발송 결과 화면은 유형과 관계없이 발송일 하나로 보여줄 수 있습니다.</li>
+<li><strong>큐 적재 전 검증</strong> — 메일 HTML의 안전성과 템플릿 구조, 발신 주소 상태, 입력한 변수의 유효성, 글자 수, 승인 대상 여부 같은 서비스 정책을 확인합니다. 서비스 정책이 들어간 검증이라 큐에 넣기 전에 처리하고, 실패하면 즉시 안내해 사용자가 수정 후 다시 보낼 수 있게 했습니다.</li>
+<li><strong>큐 이후의 역할</strong> — 큐 이후는 게이트웨이에 전달하기 전에 수신자별로 펼쳐 주는 역할만 빠르게 하도록 정책 판단을 앞단에 모았습니다.</li>
+<li><strong>테스트발송 중 본문 수정 차단</strong> — 발송건이 본문을 복사하지 않고 참조하는 구조라, 테스트발송 도중 본문을 고치면 수정본이 의도치 않게 나갈 수 있었습니다. 캠페인에 엮인 테스트발송건이 진행 중이면 본문 수정과 본발송 요청을 거부하고, 사용자가 실제 수신을 확인할 수 있도록 테스트발송이 성공한 뒤에 수정할 수 있게 했습니다.</li>
+<li><strong>승인 흐름</strong> — 어드민 승인 없이는 발송할 수 없는 회원의 메일은 어드민이 본문의 스팸성을 확인해 승인하고, 승인 시점에 대기 중이던 발송 요청을 큐에 넣습니다. 너무 늦게 승인된 요청은 본문의 의미가 사라지므로(예: 주말에 보내려던 메일이 평일에 바로 발송) 발송하지 않고 취소합니다.</li>
+<li><strong>예약 발송 취소</strong> — 예약 건은 큐 이후 DB 폴링으로 시간이 맞으면 요청되므로, 취소 시 캠페인과 발송건 상태를 취소로 바꿔 처리합니다.</li>
+</ul>
+<p class="project-limit"><strong>한계</strong> — 오픈 전이라 운영 결과는 아직 없습니다.</p>
+</details></div></div>
+
 <div class="project-card fade-in" id="p-lib"><div class="project-body">
-<div class="project-header"><span class="project-title">중복 발송 안내 공통 라이브러리</span><span class="project-badge badge-current">현 직장</span></div>
+<div class="project-header"><span class="project-title">중복 발송 안내 공통 라이브러리</span><span class="project-badge badge-current">현 직장 · 2025.07 · 약 1개월</span></div>
 <div class="project-stacks"><span class="stack">Java</span><span class="stack">Spring Boot</span><span class="stack">Redis</span><span class="stack">SHA-256</span></div>
-<p class="project-desc">같은 수신자에게 같은 내용을 1시간 안에 다시 보내려 하면 사용자에게 먼저 안내하는 기능을, 5개 서비스가 공유하는 라이브러리로 만들었습니다. 팀 5명 중 설계·구현은 단독으로 했습니다.</p>
-<ul class="project-bullets"><li><strong>메커니즘은 공통, 정책은 서비스</strong>에 두는 경계 설계</li><li>수신자 해시는 샘플링을 설계했지만 11만 건 측정(82ms) 후 <strong>전체 해시로 결정</strong></li><li>Redis 장애가 나도 발송은 진행(fail-open)</li></ul>
-<div class="project-results"><span class="result-tag">✓ 5개 서비스 적용, 로직 개발·테스트 1회분</span></div>
-<p class="project-limit"><strong>한계</strong> — 본문이 조금만 달라도 다른 요청으로 판정하고, 차단 건수는 측정하지 못했습니다.</p>
-<details class="detail"><summary>자세히 보기</summary><p class="project-desc">타 팀 서비스의 중복 발송 CS로 전사 대응 지침이 내려왔습니다. 우리 팀은 발송·과금 단계에 이미 Redis 락이 있어 실제 중복은 없었지만, 지침에 따라 같은 수신자에게 같은 내용을 1시간 안에 다시 보내려 하면 사용자에게 먼저 안내하는 기능이 필요했습니다. 5개 서비스에 각각 구현하면 방식이 갈라질 것 같아 공통 라이브러리를 제안했고, 방향은 제가 정해 팀에 공유한 뒤 단독 구현했습니다.</p>
+<p class="project-desc">중복 발송 CS 대응으로 전사 발송 전 안내 기획 요청을 받아, 같은 수신자에게 같은 내용을 1시간 안에 다시 보내려 하면 먼저 안내하는 기능을 5개 서비스가 공유하는 라이브러리로 설계·구현했습니다. 팀 5명 중 단독으로 맡았습니다.</p>
 <ul class="project-bullets">
-<li><strong>메커니즘은 공통, 정책은 서비스</strong> — 라이브러리는 해시 생성·Redis SETNX + TTL 60분 등록·허용 상태 관리만 맡고, 검사 대상 발송 수단·단건 제외·허용 분기는 서비스에 남김. 서비스마다 정책이 달라 공통에 넣으면 옵션과 분기가 늘어난다고 판단. 서비스 DTO는 어댑터로 변환해 넘겨 라이브러리가 의존하지 않음</li>
-<li><strong>수신자 해시: 설계 → 측정 → 결정</strong> — 수신자 최대 11만 건이라 앞·중간·끝 샘플링을 설계. 로컬 측정에서 11만 건 기준 전체 해시 82ms, 샘플링 6~15ms로 절대 차이는 수십 ms. 중간 수정을 놓칠 수 있어 오탐 없는 전체 해시를 택하고 샘플링은 설정값으로 남김</li>
-<li><strong>Redis 선택과 fail-open</strong> — 조회가 빠르고 TTL 관리가 쉬우며 DB 접근이 없음. 막는 장치가 아닌 안내 장치라, Redis 장애·키 유실에도 발송은 정상 진행 (중요한 건 발송이지 중복 체크가 아님)</li>
-<li><strong>요청 단위 / 오늘 하루 허용</strong> — 팝업 “확인” 후 재발송 한 건은 요청 플래그로, “오늘 하루 열지 않기”는 사용자 단위로 Redis에 당일 23:59:59까지 저장. 기기 간 일괄 적용 필요 여부는 사업팀에 확인</li>
+<li><strong>경계 설계</strong> — 중복 감지는 라이브러리에, 서비스마다 달라질 수 있는 값은 각 서비스에</li>
+<li><strong>측정 기반 결정</strong> — 샘플링을 설계했지만 운영 최대 발송 규모에서 전체 해시 82ms를 측정해 오탐 없는 전체 해시로 설정</li>
+<li><strong>장애 대응</strong> — Redis 장애 시에도 발송은 진행(fail-open)</li>
 </ul>
-<div class="project-results"><span class="result-tag">✓ 5개 서비스 적용, 로직 개발·테스트는 1회분 + 서비스별 e2e</span></div>
-<p class="project-limit"><strong>한계</strong> — 기존 중복 사례가 없어 차단 건수는 측정하지 못했습니다. 본문에 문장부호 하나만 추가돼도 다른 요청으로 판정하고, 카카오·RCS는 템플릿 코드 기준이라 변수 값만 달라도 같은 요청으로 봅니다. 초기 기획이 “동일 요청 안내”여서 유지했지만, 중복 CS가 많았다면 본문 유사도 검증으로 확장하고 싶습니다.</p>
+<div class="project-results"><span class="result-tag">✓ 5개 서비스 직접 적용</span><span class="result-tag">✓ 사용자가 두 번 요청해 생기던 CS 크게 감소</span></div>
+<details class="detail"><summary>자세히 보기</summary>
+<ul class="project-bullets">
+<li><strong>메커니즘은 공통, 정책은 서비스</strong> — 서비스마다 발송수단이 다르고 기준 시간도 지금은 같지만 달라질 수 있어, 라이브러리는 해시 생성·Redis SETNX + TTL 60분 등록·허용 상태 관리만 맡고, 검사 대상 발송 수단과 허용 분기는 서비스에 남겼습니다. 서비스 DTO는 어댑터로 변환해 넘겨 라이브러리가 서비스에 의존하지 않게 했습니다.</li>
+<li><strong>수신자 해시: 설계 → 측정 → 결정</strong> — 웹에서 수신자를 최대 100만 건까지 넣을 수 있어 성능을 우려해 샘플링을 설계·구현했습니다. 하지만 운영 최대 발송 규모에서는 전체 해시도 82ms로 속도 차이가 크지 않아 오탐 없는 전체 해시로 설정하고 샘플링은 규모 증가에 대비해 설정값으로 남겼습니다.</li>
+<li><strong>Redis 선택과 fail-open</strong> — 조회가 빠르고 TTL 관리가 쉬우며 DB 접근이 없습니다. 막는 장치가 아니라 안내 장치라 Redis 장애나 키 유실에도 발송은 정상 진행되게 했습니다.</li>
+<li><strong>요청 단위 / 오늘 하루 허용</strong> — 팝업 “확인” 후 재발송은 요청 플래그로, “오늘 하루 열지 않기”는 사용자 단위로 당일 23:59:59까지 Redis에 저장했습니다. 기기 간 일괄 적용 여부는 사업팀에 확인했습니다.</li>
+<li><strong>적용</strong> — 5개 서비스 모두 직접 적용했습니다. 로직 개발·테스트는 1회, 서비스별 e2e를 수행했습니다.</li>
+</ul>
+<p class="project-limit"><strong>한계</strong> — 본문에 문장부호 하나만 달라도 다른 요청으로 판정하고, 카카오·RCS는 템플릿 코드 기준이라 변수 값만 달라도 같은 요청으로 봅니다. 중복 CS가 더 많았다면 본문 유사도 검증으로 확장하고 싶습니다.</p>
 </details></div></div>
 
-<div class="project-card fade-in" id="p-redis"><div class="project-body">
-<div class="project-header"><span class="project-title">Redis Sentinel Failover 후 Lettuce 커넥션 불능 장애</span><span class="project-badge badge-current">현 직장</span></div>
+<div class="project-card fade-in" id="p-sms"><div class="project-body">
+<div class="project-header"><span class="project-title">문자 발송 서비스 재개발</span><span class="project-badge badge-current">현 직장 · 2022.01 — 2023.08</span></div>
+<div class="project-stacks"><span class="stack">PHP → Java</span><span class="stack">Thymeleaf</span><span class="stack">Oracle</span><span class="stack">RabbitMQ</span><span class="stack">Redis</span><span class="stack">15인 팀</span></div>
+<p class="project-desc">PHP로 운영되던 문자 발송 서비스를 Java/Thymeleaf로 재개발한 15인 프로젝트에서 결제·카카오 도메인 백엔드를 맡았습니다.</p>
+<ul class="project-bullets">
+<li><strong>모바일쿠폰·팩스 종결 처리</strong> — 문자의 가결제·종결 처리 구조를 기반으로 도메인별 과금 규칙을 적용해 백엔드 단독 개발</li>
+<li><strong>부정결제 방어</strong> — 결제 금액을 서버에서만 확정해 PG로 전달하는 구조로 변경, 불일치 시 사용자 정지</li>
+<li><strong>카카오 연동·API 명세 제안</strong> — 여러 프론트 개발자가 쓰는 발신프로필 API 문서화를 제안·작성</li>
+</ul>
+<div class="project-results"><span class="result-tag">✓ 결제 금액 서버 확정 구조 적용</span></div>
+<details class="detail"><summary>자세히 보기</summary>
+<ul class="project-bullets">
+<li><strong>가결제·종결 처리란</strong> — 문자는 건당 과금인데, 통신사 결과를 받은 뒤 차감하면 그 사이 잔액이 부족해질 수 있습니다. 그래서 발송 시도 시점에 성공을 가정한 금액을 사용자가 쓰지 못하게 잡아두고(가결제), 통신사 결과를 받으면 성공분만 실제 차감하고 실패분은 돌려주며 잔액·통계를 정리합니다(종결 처리). 예를 들어 10건을 보내 7건이 성공하면 10건분을 잡아뒀다가 7건분만 차감합니다.</li>
+<li><strong>모바일쿠폰·팩스로 확장</strong> — 문자에 있던 이 구조를 바탕으로 모바일쿠폰과 팩스의 종결 처리를 개발했습니다. 건당/장수별 과금, 국내·국제 기준 금액 등 도메인별 규칙을 적용했고, 백엔드 단독 개발 건이라 테스트 코드로 검증했습니다.</li>
+<li><strong>놓친 예외와 바뀐 습관</strong> — 팩스는 장 단위로 과금하는데, 수신번호가 휴대폰번호면 여러 장을 보내도 1장만 성공으로 처리되는 예외가 있었습니다. 이 케이스를 설계에서 놓쳐 운영 후 금전 손실이 생겼고, 이후로는 설계 단계에서 도메인의 예외 케이스를 먼저 하나씩 확인하는 습관이 생겼습니다.</li>
+<li><strong>부정결제 방어</strong> — 클라이언트에서 결제 금액을 조작하는 경우에 대비해 프론트에서 금액을 조정하지 못하게 막고, PG로 보내는 결제 금액은 백엔드가 정한 값만 쓰도록 바꿨습니다. 실결제 금액과의 정합성도 확인해, 맞지 않으면 사용자를 즉시 정지·로그아웃하고 알림을 보내도록 했습니다.</li>
+<li><strong>카카오 연동·API 명세 제안</strong> — 보통 한 사람이 한 도메인의 프론트·백엔드를 함께 맡았는데, 카카오 연동에서는 처음으로 나눠서 진행했습니다. 협업할 때마다 메신저로 확인하게 되고, 제가 만든 발신프로필 API를 여러 프론트 개발자가 써야 해서 문서화를 제안하고 직접 작성했습니다.</li>
+</ul>
+</details></div></div>
+</section>
+<hr class="divider">
+
+<section id="troubleshooting">
+<p class="section-label">Troubleshooting</p><h2 class="section-title">트러블슈팅</h2>
+
+<div class="project-card fade-in" id="t-redis"><div class="project-body">
+<div class="project-header"><span class="project-title">Redis Sentinel Failover 후 Lettuce 커넥션 불능 장애</span><span class="project-badge badge-current">현 직장 · 2026.04</span></div>
 <div class="project-stacks"><span class="stack">Redis Sentinel</span><span class="stack">Lettuce</span><span class="stack">Redisson</span><span class="stack">Tomcat</span></div>
-<p class="project-desc">네트워크 단절 후 Sentinel이 failover했지만 Lettuce를 쓰는 세션·캐시가 새 마스터로 붙지 못해 흰 화면이 노출된 장애. 장애 당일 개발 서버에서 재현까지 마치고 원인을 찾았습니다.</p>
-<ul class="project-bullets"><li><code>kill -9</code>로는 재현이 안 돼 <code>kill -STOP</code>으로 “살아 있지만 응답 못 하는” 상태를 만들어 재현</li><li>타임아웃·풀 옵션 조정은 직접 실험으로 기각, <code>autoReconnect</code>가 죽은 마스터에 재연결하며 명령이 쌓이는 것이 원인</li><li>리뷰에서 <code>autoReconnect(false)</code>의 위험이 제기돼 번복, 최종은 <code>commandTimeout 2s</code> + <code>validateConnection(true)</code></li></ul>
-<div class="project-results"><span class="result-tag">✓ 최종 설정으로 kill -STOP 환경에서 자동 복구 재검증</span><span class="result-tag">✓ 운영 반영</span></div>
-<p class="project-limit"><strong>한계</strong> — 운영의 실제 failover로 검증된 적은 없고, 최종 설정은 재현 환경과 리뷰로 수렴한 값입니다.</p>
-<details class="detail"><summary>자세히 보기</summary><p class="project-desc">가상화 서버 네트워크 단절로 Redis 마스터가 내려가 Sentinel이 failover했지만, Lettuce를 쓰는 세션·캐시가 새 마스터로 붙지 못해 흰 화면이 노출됐습니다. 첫날 혼자 재현해 원인을 찾았고, 이후 팀과 설정을 여러 번 검증·번복하며 최종안으로 수렴했습니다. 재현 테스트는 마지막까지 제가 이어서 진행했습니다.</p>
+<p class="project-desc">네트워크 단절 후 Sentinel이 failover했지만 Lettuce를 쓰는 세션·캐시가 새 마스터로 붙지 못해 일정 시간 흰 화면이 노출된 장애입니다.</p>
 <ul class="project-bullets">
-<li><strong>재현</strong> — 운영과 같은 방화벽·IP 설정의 개발 환경에서 <code>kill -9</code>는 소켓이 닫혀 재현되지 않았고, 인프라팀 협조로 네트워크를 차단하면 재현됨. 혼자 빠르게 반복하려고 <code>kill -STOP</code>으로 “살아 있지만 응답 못 하는” 상태를 만들어 같은 증상을 재현</li>
-<li><strong>직접 실험으로 기각</strong> — 타임아웃·재시도·<code>readmode</code> 조정은 Redisson만 개선하고 Lettuce는 그대로. 풀 옵션은 리소스만 안정화시켰을 뿐 죽은 마스터에 매달린 커넥션은 그대로</li>
-<li><strong>원인과 1차 해결</strong> — <code>autoReconnect</code>가 죽은 마스터 IP로 재연결을 반복하며 명령이 큐에 쌓임. <code>autoReconnect(false)</code> + 타임아웃 + <code>validateConnection</code> 조합(각각 단독은 실패)으로 복구. 서비스는 풀이 아닌 공유 커넥션이라 풀 대여 시점 검증이 적용되지 않아 <code>validateConnection</code>이 필요</li>
-<li><strong>번복</strong> — 리뷰에서 <code>autoReconnect(false)</code>의 위험(순단에도 연결이 영구히 죽음, 재연결마다 핸드셰이크 비용)이 제기됨. 기본값으로 되돌리고 끊긴 동안 명령을 쌓지 않는 <code>REJECT_COMMANDS</code>를 시도했고, keepAlive는 이번 장애와 직접 연관이 없어 제거</li>
-<li><strong>최종 구성</strong> — <code>commandTimeout 2s</code> + <code>validateConnection(true)</code>. 비로그인 폴백 페이지는 제가 구현했고, 서킷브레이커와 캐시 대체값 처리는 팀원이 보완</li>
+<li><strong>원인</strong> — 응답하지 못하는 마스터 상황을 직접 재현해, <code>autoReconnect</code>가 죽은 마스터에 재연결하며 명령이 쌓이는 것을 확인</li>
+<li><strong>해결</strong> — <code>autoReconnect(false)</code>는 리뷰에서 끊긴 연결이 자동 복구되지 않는 위험이 지적돼 철회, <code>commandTimeout 2s</code> + <code>validateConnection(true)</code>로 자동 복구</li>
+<li><strong>재발 방지</strong> — 팀이 맡은 유사 서비스 5개 전체의 같은 설정 점검</li>
 </ul>
-<div class="project-results"><span class="result-tag">✓ 최종 설정으로 kill -STOP 환경에서 자동 복구 재검증</span><span class="result-tag">✓ 운영 반영, 이후 같은 상황 없음</span></div>
-<p class="project-limit"><strong>한계</strong> — 운영의 실제 failover로 검증된 적은 없습니다. 최종 설정은 “최적값”이 아니라 재현 환경과 리뷰로 수렴한 값입니다. <strong>회고</strong> — 기본값을 의심해 원인을 찾았지만 반대 극단(<code>false</code>)에도 비용이 있다는 걸 리뷰에서 배웠습니다. 기본값과 그 반대를 둘 다 비교하고 결정해야 합니다.</p>
+<div class="project-results"><span class="result-tag">✓ kill -STOP 환경에서 자동 복구 재검증 후 운영 반영</span><span class="result-tag">✓ 유사 서비스 5개 점검</span></div>
+<details class="detail"><summary>자세히 보기</summary>
+<ul class="project-bullets">
+<li><strong>재현</strong> — 운영과 같은 설정의 개발 환경에서 <code>kill -9</code>는 소켓이 닫혀 재현되지 않았고, 인프라팀 협조로 네트워크를 차단하면 재현됐습니다. 혼자 빠르게 반복하려고 <code>kill -STOP</code>으로 “살아 있지만 응답 못 하는” 상태를 만들어 같은 증상을 재현했습니다.</li>
+<li><strong>직접 실험으로 기각</strong> — 타임아웃·재시도·<code>readmode</code> 조정은 Redisson만 개선하고 Lettuce는 그대로였습니다. 풀 옵션은 리소스만 안정시켰을 뿐 죽은 마스터에 매달린 커넥션은 그대로였습니다.</li>
+<li><strong>원인과 1차 해결</strong> — <code>autoReconnect</code>가 죽은 마스터 IP로 재연결을 반복하며 명령이 큐에 쌓였습니다. 서비스는 풀이 아닌 공유 커넥션이라 풀 대여 시점 검증이 적용되지 않아 <code>validateConnection</code>이 필요했습니다.</li>
+<li><strong>번복</strong> — 리뷰에서 <code>autoReconnect(false)</code>로 두면 순간 끊김에도 연결이 자동으로 복구되지 않는다는 위험이 제기돼, 기본값으로 되돌리고 다른 조합을 검증했습니다.</li>
+<li><strong>최종 구성</strong> — <code>commandTimeout 2s</code> + <code>validateConnection(true)</code>. 비로그인 폴백 페이지는 제가 구현했고, 서킷브레이커와 캐시 대체값 처리는 팀원이 보완했습니다.</li>
+<li><strong>재발 방지</strong> — 팀이 맡은 비슷한 성격의 발송 서비스 5개에 같은 설정이 있는지 확인해 함께 반영했습니다.</li>
+</ul>
+<p class="project-limit"><strong>한계</strong> — 운영의 실제 failover로 검증된 적은 없고, 최종 설정은 재현 환경과 리뷰로 수렴한 값입니다. <strong>회고</strong> — 기본값을 의심해 원인을 찾았지만, 반대 극단(<code>false</code>)에도 비용이 있다는 걸 리뷰에서 배웠습니다.</p>
 </details></div></div>
 
-<div class="project-card fade-in" id="p-sync"><div class="project-body">
-<div class="project-header"><span class="project-title">메일 발송 동시성·멱등성 설계</span><span class="project-badge badge-current">현 직장 · 오픈 전</span></div>
-<div class="project-stacks"><span class="stack">Java 17</span><span class="stack">Spring Boot</span><span class="stack">MariaDB 10.11</span><span class="stack">Redis</span><span class="stack">RabbitMQ</span></div>
-<p class="project-desc">같은 캠페인에 편집·발송·취소가 동시에 몰려도, 같은 요청이 재시도돼도 발송건이 한 번만 만들어지게 한 설계입니다. 오픈 전 프로젝트로 발송 요청 접수 영역을 설계·구현했습니다.</p>
-<ul class="project-bullets"><li>분산 락 대신 DB 캠페인 행 <code>FOR UPDATE</code>와 유니크 제약으로 직렬화(검사와 INSERT를 같은 트랜잭션 경계 안에)</li><li>모든 판정을 잠금 아래에서 수행하고 <strong>판정 순서까지 설계</strong></li><li>멱등키와 캠페인 잠금은 서로 다른 중복을 막는 별개 장치</li></ul>
-<div class="project-results"><span class="result-tag">✓ 실 DB 2스레드 동시성 테스트 3건, 잠금 해제 기준 14건</span></div>
-<p class="project-limit"><strong>한계</strong> — 오픈 전이라 운영 결과는 없고, 동시성 테스트는 서비스 전체가 아니라 임계구역을 재현한 것입니다.</p>
-<details class="detail"><summary>자세히 보기</summary><p class="project-desc">같은 캠페인에 편집·발송·취소가 동시에 몰려도, 같은 요청이 재시도돼도 발송건이 한 번만 만들어지게 하는 설계. 발송 요청 접수 영역을 설계·구현했습니다. 설계 중 본문 편집과 발송의 경합으로 중복·낡은 본문 발송이 가능하고, 수정 후 재발송 시 이전 멱등키가 재사용돼 정상 요청이 무시될 수 있음을 발견했습니다.</p>
-<ul class="project-bullets">
-<li><strong>기각한 대안(설계 단계 판단)</strong> — 분산 락: 검사와 INSERT가 같은 DB 트랜잭션 안에 있어야 원자성이 보장되는데 외부 락은 그 경계 밖. 조건 없는 UPDATE: 비동기 디스패처와 경합 시 상태를 덮어씀. 둘 다 구현·측정 없이 설계로 판단</li>
-<li><strong>캠페인 행 직렬화</strong> — 트랜잭션 진입 직후 <code>FOR UPDATE</code>로 잠그고 본발송 중복·테스트 발송 한도·진행 중 테스트 판정을 모두 잠금 아래에서 수행. 한도를 잠금 아래에서 세므로 동시 요청이 넘지 못함</li>
-<li><strong>판정 순서가 곧 설계</strong> — 잠금 뒤 첫 일반 읽기로 판정해 스냅샷이 낡지 않게, 멱등 재확인을 본문 신선도 검사보다 앞에 두어 흡수돼야 할 요청이 본문 변경으로 거부되지 않게 함</li>
-<li><strong>서로 다른 두 장치</strong> — 멱등키(선확인 → 잠금 아래 재확인 → 유니크 위반 후 재조회)는 같은 요청의 재시도를, 캠페인 잠금과 “일반 캠페인 본발송 1건” 규칙은 키가 다른 중복 요청을 방어. 프론트는 요청 내용·본문 저장 세대가 바뀌면 새 키를 발급</li>
-<li><strong>조건부 UPDATE와 커밋 후 발행</strong> — 취소·승인·반려는 읽은 상태를 조건으로 걸어 디스패처가 먼저 바꾸면 0건으로 거부. 큐 발행은 커밋 뒤이고, 실패해도 디스패처가 DB를 주기적으로 스캔해 대기 건을 픽업하므로 유실이 아니라 픽업 지연</li>
-</ul>
-<div class="project-results"><span class="result-tag">✓ 실 DB 2스레드 동시성 테스트 3건 (한도 초과 방지·멱등키 중복 저장 방지·잠금 후 스냅샷 판정)</span><span class="result-tag">✓ 잠금 해제 기준 실 DB 테스트 14건 (발송건 상태 11종)</span></div>
-<p class="project-limit"><strong>한계</strong> — 동시성 테스트는 같은 순서의 매퍼 호출로 임계구역을 재현한 것이며 서비스 전체 통합 테스트는 아닙니다. 잠금 안에서 요금제 판정과 본문 링크 처리도 돌아 직렬화 시간이 짧지 않습니다. 발행 실패 복구는 디스패처 스캔에 의존하고 이 서비스는 발행 실패를 감지하지 않습니다.</p>
-</details></div></div>
-
-<div class="project-card fade-in" id="p-oracle"><div class="project-body">
-<div class="project-header"><span class="project-title">Oracle 세션 설정에 따라 결과가 달라지던 날짜 조건 버그</span><span class="project-badge badge-current">현 직장</span></div>
+<div class="project-card fade-in" id="t-oracle"><div class="project-body">
+<div class="project-header"><span class="project-title">Oracle 세션 설정에 따라 결과가 달라지던 날짜 조건 버그</span><span class="project-badge badge-current">현 직장 · 2026.01</span></div>
 <div class="project-stacks"><span class="stack">Oracle</span><span class="stack">SQL</span></div>
-<p class="project-desc">후불 미납금이 차감되지 않고 선불 충전금으로 들어가던 운영 CS. 같은 쿼리가 접속 환경에 따라 다른 날짜로 해석됐고, 2025년에는 우연히 동작하다 2026년이 되며 드러난 잠복 버그였습니다.</p>
-<ul class="project-bullets"><li>쿼리부터 확인해 정상이면 파라미터를 의심, 운영 로그에서 종료일이 2025-01-26으로 찍힌 것을 확인</li><li>DBA 확인으로 앱 세션과 DB 툴 세션의 <code>NLS_DATE_FORMAT</code> 차이를 규명</li><li>세션 설정 통일 요청과 함께 문자열 변환 비교를 날짜 직접 비교로 변경</li></ul>
-<div class="project-results"><span class="result-tag">✓ 같은 패턴 9곳 + 같은 팀 다른 서비스 9곳 직접 수정</span></div>
-<p class="project-limit"><strong>한계</strong> — 영향 건수는 정확히 추출하지 못했습니다.</p>
-<details class="detail"><summary>자세히 보기</summary><p class="project-desc">운영 CS: 후불 미납금이 차감되지 않고 선불 충전금으로 충전됨. 같은 쿼리가 접속 환경에 따라 다른 날짜로 해석됐고, 2025년에는 우연히 동작하다가 2026년이 되며 드러난 잠복 버그였습니다.</p>
+<p class="project-desc">정산 금액이 잘못 처리되던 운영 CS입니다. 2025년에는 우연히 정상 동작하다 2026년이 되며 드러난 잠복 버그였습니다.</p>
 <ul class="project-bullets">
-<li><strong>가설 좁히기</strong> — 개발·운영 DB 툴에서 쿼리가 모두 정상 조회돼 쿼리 자체는 문제없다고 보고 파라미터인 날짜를 의심. 운영 로그에서 종료일이 2026-01-25가 아닌 2025-01-26으로 찍힌 것을 확인</li>
-<li><strong>모순에서 얻은 단서</strong> — 날짜 형식 문제로 보였지만 DB 툴에서는 정상이라 DBA에게 확인을 요청, 애플리케이션 세션과 DB 툴 세션의 <code>NLS_DATE_FORMAT</code> 차이를 확인</li>
-<li><strong>원인</strong> — 날짜에 일수를 더하고 <code>|| ' 23:59:59'</code>를 이어 붙여 <code>TO_DATE</code>로 재파싱하는 구조라 세션 포맷에 따라 종료일이 달라짐. 종료일이 25일이라 2025년에는 연도와 일이 같아 어느 포맷이든 결과가 같았고, 2026년에 앱 세션에서만 0건</li>
-<li><strong>두 겹의 수정</strong> — DBA에게 세션 NLS 통일을 요청하되 코드도 문자열 변환 후 <code>BETWEEN</code> 비교를 날짜 직접 비교로 변경: <code>REG_DT &gt;= TRUNC(SYSDATE,'MM') AND REG_DT &lt; TRUNC(SYSDATE,'MM') + 25</code></li>
+<li><strong>원인</strong> — 운영 로그에서 종료일의 연도가 앞당겨 찍힌 것을 단서로, 서버 세션은 직접 조회할 수 없어 DBA에게 확인을 요청해 앱 세션과 DB 툴 세션의 <code>NLS_DATE_FORMAT</code> 차이를 규명</li>
+<li><strong>해결</strong> — 문자열 변환 비교를 날짜 직접 비교로 변경, 세션 설정 통일 요청</li>
+<li><strong>재발 방지</strong> — 같은 패턴 18곳을 다른 서비스까지 직접 수정</li>
 </ul>
-<div class="project-results"><span class="result-tag">✓ 동일 패턴 9곳 + 같은 팀 다른 서비스 9곳 직접 수정</span></div>
-<p class="project-limit"><strong>한계</strong> — 영향 건수는 이후 사용 이력 때문에 정확히 추출하지 못했습니다. <strong>회고</strong> — “DB 툴에서는 되는데 애플리케이션에서만 안 된다”는 환경 의존의 신호라서, 설정 통일과 별개로 환경에 영향받지 않는 코드로 바꿨습니다.</p>
+<div class="project-results"><span class="result-tag">✓ 본 서비스 9곳 + 같은 팀 다른 서비스 9곳 직접 수정</span></div>
+<details class="detail"><summary>자세히 보기</summary>
+<ul class="project-bullets">
+<li><strong>가설 좁히기</strong> — 개발·운영 DB 툴에서 쿼리가 모두 정상 조회돼 쿼리 자체는 문제없다고 보고 파라미터인 날짜를 의심했습니다. 운영 로그에서 종료일의 연도가 1년 앞당겨 찍힌 것을 확인했습니다.</li>
+<li><strong>DBA 확인</strong> — DB 툴 세션은 직접 조회할 수 있지만 서버에서 붙는 세션은 조회할 수 없어 DBA에게 확인을 요청했고, 두 세션의 <code>NLS_DATE_FORMAT</code>이 다르다는 것을 확인했습니다.</li>
+<li><strong>원인</strong> — 날짜에 일수를 더하고 <code>|| ' 23:59:59'</code>를 이어 붙여 <code>TO_DATE</code>로 다시 파싱하는 구조라 세션 포맷에 따라 종료일이 달라졌습니다. 2025년에는 연도와 일자 값이 우연히 맞아떨어져 어느 포맷이든 결과가 같았고, 2026년에 앱 세션에서만 0건이 나왔습니다.</li>
+<li><strong>두 겹의 수정</strong> — DBA에게 세션 설정 통일을 요청하고, 코드도 문자열로 변환해 다시 파싱하던 비교를 <code>TRUNC</code> 기준의 날짜 직접 비교로 바꿨습니다.</li>
+</ul>
+<p class="project-limit"><strong>한계</strong> — 영향 건수는 이후 사용 이력 때문에 정확히 추출하지 못했습니다. <strong>회고</strong> — “DB 툴에서는 되는데 애플리케이션에서만 안 된다”는 환경 의존의 신호라, 설정 통일과 별개로 환경에 영향받지 않는 코드로 바꿨습니다.</p>
 </details></div></div>
 
-<details class="more"><summary>그 밖의 작업 (갭 락, 다중 탭, MongoDB, Jenkins)</summary><div class="project-card fade-in"><div class="project-body">
-<div class="project-header"><span class="project-title">COUNT … FOR UPDATE 갭 락 데드락 해소</span><span class="project-badge badge-current">현 직장</span></div>
-<div class="project-stacks"><span class="stack">MariaDB</span><span class="stack">InnoDB</span></div>
-<p class="project-desc">보관 한도 검증에서 첫 저장 시 잠글 행이 없어 갭 락만 잡히고, 동시 요청이 서로 INSERT를 기다리며 데드락이 발생.</p>
-<ul class="project-bullets">
-<li><strong>기각한 대안</strong> — 테이블 락, 분산 락(한 회원의 작업이 전체 저장을 막는 병목)</li>
-<li><strong>상위 레코드 직렬화</strong> — 항상 존재하는 회원 행(<code>USER_MAIN</code>)을 먼저 잠근 뒤 COUNT와 INSERT 수행</li>
-</ul>
-<div class="project-results"><span class="result-tag">✓ REPEATABLE READ(데드락)·READ COMMITTED(한도 초과) 모두에서 유효</span></div>
-</div></div>
-
-<div class="project-card fade-in"><div class="project-body">
-<div class="project-header"><span class="project-title">다중 탭 동시 편집권 제어</span><span class="project-badge badge-current">현 직장</span></div>
-<div class="project-stacks"><span class="stack">Redis</span><span class="stack">Spring Boot</span><span class="stack">JavaScript</span></div>
-<p class="project-desc">같은 회원이 여러 탭에서 편집하면 마지막 저장이 이전 저장을 덮어쓰는 문제. 프런트와 백엔드를 직접 설계.</p>
-<ul class="project-bullets">
-<li><strong>기각한 대안</strong> — 하트비트·TTL 회수(복잡도 급증, 네트워크 지연 시 정상 사용자 이탈), 선점 정책(죽은 창이 진입을 막음)</li>
-<li><strong>후점(Last-wins) 정책</strong> — Redis 키에 서버 발급 UUID를 덮어쓰고, 요청 세대 번호로 늦게 온 응답을 차단</li>
-<li><strong>에지 케이스 방어</strong> — <code>focus</code> + <code>visibilitychange</code> 감지, <code>abandon()</code> 종료 래치</li>
-</ul>
-<div class="project-results"><span class="result-tag">✓ 하트비트·회수 로직 제거</span><span class="result-tag">✓ 브라우저 실검증 12개 예외 케이스 통과</span></div>
-</div></div>
-
-<div class="project-card fade-in"><div class="project-body">
-<div class="project-header"><span class="project-title">MongoDB 서버 CPU 90% 병목 원인 추적</span><span class="project-badge badge-prev">이전 직장</span></div>
+<details class="more"><summary>이전 직장 작업 (MongoDB CPU, Jenkins 배포)</summary>
+<div class="project-card fade-in" id="t-mongo"><div class="project-body">
+<div class="project-header"><span class="project-title">MongoDB 서버 CPU 90% 병목 원인 추적</span><span class="project-badge badge-prev">어썸레이</span></div>
 <div class="project-stacks"><span class="stack">MongoDB</span><span class="stack">Linux</span><span class="stack">Cron</span><span class="stack">NCP 모니터링</span></div>
 <p class="project-desc">사용자 쿼리가 없는 오픈 전 서버에서 CPU가 40% → 80% → 90~100%까지 올라 정상 테스트가 어려웠습니다. 모니터링 지표에서 시작해 백그라운드 수집 프로그램까지 범위를 좁혀 원인을 찾고 고쳤습니다.</p>
 <ul class="project-bullets">
 <li><strong>좁혀 간 순서</strong> — NCP 모니터링 → <code>top</code>(mongod가 대부분) → <code>mongotop</code>(컬렉션별 읽기 지연) → 인덱스 유무별 쿼리 시간 비교</li>
 <li><strong>가설 기각과 격리</strong> — 인덱스가 있는 쿼리는 0ms인데도 지연이 컸고 사용자 쿼리가 없는데도 부하가 계속돼, 데이터를 저장하는 프로그램 두 개를 번갈아 꺼 보며 원인 프로그램을 특정(mongod CPU 193% → 약 절반)</li>
-<li><strong>원인과 수정</strong> — 센서 상태 확인(10초 주기)과 시간당 수집 개수 계산이 한 프로그램에서 함께 돌아, 한 시간에 한 번이면 되는 계산이 10초마다 실행. 모든 센서를 갱신하던 것을 활성 센서만 갱신하도록 바꾸고, 수집 개수 계산은 cron(매시간)으로 도는 일회성 프로그램으로 분리</li>
+<li><strong>원인과 수정</strong> — 센서 상태 확인(10초 주기)과 시간당 수집 개수 계산이 한 프로그램에서 함께 돌아, 한 시간에 한 번이면 되는 계산이 10초마다 실행. 활성 센서만 갱신하도록 바꾸고, 수집 개수 계산은 cron(매시간)으로 도는 일회성 프로그램으로 분리</li>
 </ul>
 <div class="project-results"><span class="result-tag">✓ CPU 90% → 70% → 30% (NCP 모니터링·top)</span><span class="result-tag">✓ 컬렉션 읽기/쓰기 지연 2~4초대 → 500~10ms (mongotop)</span><span class="result-tag">✓ Disk Write 22KB → 15KB</span></div>
 <p class="project-limit"><strong>한계</strong> — 사용자 쿼리가 없는 오픈 전 서버 기준이라 운영 트래픽에서의 효과는 확인하지 못했습니다.</p>
 </div></div>
 
-<div class="project-card fade-in"><div class="project-body">
-<div class="project-header"><span class="project-title">Jenkins 배포 자동화</span><span class="project-badge badge-prev">이전 직장</span></div>
+<div class="project-card fade-in" id="t-jenkins"><div class="project-body">
+<div class="project-header"><span class="project-title">Jenkins 배포 자동화</span><span class="project-badge badge-prev">어썸레이</span></div>
 <div class="project-stacks"><span class="stack">Jenkins</span><span class="stack">NCP</span><span class="stack">Tomcat</span></div>
-<p class="project-desc">혼자 개발·운영하며 운영 서버에 접속해 WAR를 올리고 <code>restart.sh</code>를 수동 실행하던 반복 작업이 불편해, 직접 자동화했습니다.</p>
+<p class="project-desc">혼자 개발·운영하며 운영 서버에 접속해 WAR를 올리고 <code>restart.sh</code>를 수동 실행하던 반복 작업을 자동화했습니다.</p>
 <ul class="project-bullets">
 <li><strong>점진적 자동화</strong> — Git 소스 가져오기, WAR 빌드, NCP 서버 전달, 기존 <code>restart.sh</code> 실행을 하나의 Jenkins 잡으로 묶음(수동 트리거)</li>
 </ul>
